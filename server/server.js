@@ -10,6 +10,7 @@ app.use(cookieParser());
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 
 require('./config/mongoose.config');
+require('./routes/user.routes')(app);
 require('dotenv').config();
 
 app.listen(port, ()=> console.log(`Listening on port: ${port}`));
