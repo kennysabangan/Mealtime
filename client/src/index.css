@@ -11,7 +11,7 @@ code {
 }
 
 .login-registration {
-  background-image: url('../public/Food-Bg.png');
+  background-image: url('../public/Food-Bg.jpeg');
   background-repeat: no-repeat;
   height: 100vh;
   width: 100vw;
@@ -20,5 +20,5 @@ code {
 }
 
 .btn-shadow {
-  box-shadow: 4px 4px 10px 1px lightgray;
+  box-shadow: 5px 4px 12px 1px lightgray !important;
 }

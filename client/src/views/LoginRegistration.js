@@ -104,7 +104,7 @@ const LoginRegistration = () => {
                         </div>
 
                         {/* Submit button */}
-                        <button onClick={login} className="btn btn-primary btn-block mb-4">Sign in</button>
+                        <button onClick={login} className="btn btn-primary btn-block mb-4 btn-shadow">Sign in</button>
 
                         </form>
                     </div>
