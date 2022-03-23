@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
 import Navigation from "../components/Navigation";
 import Cookies from 'js-cookie';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 const Dashboard = () => {
 
@@ -12,6 +13,8 @@ const Dashboard = () => {
         if (!Cookies.get('usertoken')) {
             navigate('/');
         }
+
+        toast.success('You have successfully logged in!')
     }, [])
 
     return (
