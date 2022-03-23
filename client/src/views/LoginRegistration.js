@@ -71,7 +71,7 @@ const LoginRegistration = () => {
                         aria-selected="true"
                         >Login</a>
                     </li>
-                    <li className="nav-item" role="presentation">
+                    <li className="nav-item" role="presentation" style={{ marginRight: "-8px" }}>
                         <a
                         className="nav-link btn-shadow"
                         id="tab-register"
