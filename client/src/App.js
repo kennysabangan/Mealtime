@@ -5,6 +5,7 @@ import './index.css';
 import LoginRegistration from './views/LoginRegistration';
 import Dashboard from './views/Dashboard';
 import GeneratedMeals from './views/GeneratedMeals';
+import ProfileCard from './views/ProfileCard';
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<LoginRegistration/>} />
           <Route path="/dashboard" element={<Dashboard/>} />
           <Route path="/meals" element={<GeneratedMeals/>} />
+          <Route path="/profile" element={<ProfileCard/>} />
         </Routes>
         <Toaster/>
       </BrowserRouter>
