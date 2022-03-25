@@ -8,6 +8,7 @@
     "cookie-parser": "^1.4.6",
     "js-cookie": "^3.0.1",
     "mdb-ui-kit": "^3.11.0",
+    "mdbreact": "^5.2.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-hot-toast": "^2.2.0",
