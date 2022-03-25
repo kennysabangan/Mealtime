@@ -106,8 +106,10 @@ const Dashboard = () => {
                             </a>
                         </span>
                     </div>
-
                 </div>
+            </div>
+            <div className="recipe-grid">
+                {/* putting grid of photos - will hook up to API for URLs */}
             </div>
         </div>
     )
