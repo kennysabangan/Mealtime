@@ -48,10 +48,26 @@ const Navigation = () => {
 
                 {/* <!-- Right links --> */}
                 <div className="d-flex align-items-center">
-                    <button type="button" className="btn btn-link px-3 me-2">
+                    <div className="dropdown">
+                        <a
+                            className="btn btn-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            id="dropdownMenuLink"
+                            data-mdb-toggle="dropdown"
+                            aria-expanded="false"
+                        >
+                        <img src={require('../static/no-profile.png')} className="me-2" height="20px"/>
                         My Profile
-                    </button>
-                    <button onClick={logout} type="button" className="btn btn-link px-3 me-2">
+                        </a>
+
+                        <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a className="dropdown-item" href="#">Action</a></li>
+                            <li><a className="dropdown-item" href="#">Another action</a></li>
+                            <li><a className="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+                    <button onClick={logout} type="button" className="btn btn-link ms-4 px-3 me-2">
                         Logout
                     </button>
                 </div>
