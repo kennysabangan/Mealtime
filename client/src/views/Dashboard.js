@@ -110,8 +110,8 @@ const Dashboard = () => {
                 </div>
             </div>
             <hr></hr>
-            <div className="recipe-grid">
-                <h2>My Recipe Book:</h2>
+            <div className="container">
+                <h2 className="my-4">My Recipe Book:</h2>
                 <RecipeGrid />
             </div>
         </div>
