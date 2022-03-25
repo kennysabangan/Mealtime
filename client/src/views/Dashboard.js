@@ -101,7 +101,7 @@ const Dashboard = () => {
                             aria-describedby="search-addon"
                         />
                         <span className="input-group-text border-0 mb-1" id="search-addon">
-                            <a className="btn btn-primary" style={{ marginTop: "2px" }}>
+                            <a className="btn" style={{ marginTop: "2px", backgroundColor: "#48BD8F"}}>
                                 <i className="fas fa-search"></i>
                                 <span className="ms-2">Search</span>
                             </a>

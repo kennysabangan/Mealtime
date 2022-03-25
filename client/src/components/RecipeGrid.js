@@ -15,7 +15,7 @@ const RecipeGrid = () => {
                 <MDBCardText>
                     Short description of recipe
                 </MDBCardText>
-                <MDBBtn href='#'>Add to 'My Recipes'</MDBBtn>
+                <MDBBtn style={{ backgroundColor: "#48BD8F" }} href='#'>Add to 'My Recipes'</MDBBtn>
             </MDBCardBody>
         </MDBCard>      
     );
