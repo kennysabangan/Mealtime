@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import RecipeGrid from "../components/RecipeGrid";
 
 const Dashboard = () => {
 
@@ -108,9 +109,7 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-            <div className="recipe-grid">
-                {/* putting grid of photos - will hook up to API for URLs */}
-            </div>
+            <RecipeGrid />
         </div>
     )
 }
