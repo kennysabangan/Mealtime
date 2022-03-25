@@ -28,7 +28,7 @@ const ChooseAMeal = (props) => {
         </div>
       </div>
       <div className="m-4 d-flex justify-content-center">
-        <button>Add to Meal Plan</button>
+        <a className="btn" style={{ marginTop: "2px", backgroundColor: "#48BD8F"}}>Add to Meal Plan</a>
       </div>
     </div>
   );
