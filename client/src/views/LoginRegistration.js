@@ -48,9 +48,9 @@ const LoginRegistration = () => {
 
     useEffect(() => {
         document.querySelectorAll('.form-outline').forEach((formOutline) => {
-          new mdb.Input(formOutline).init();
+            new mdb.Input(formOutline).init();
         });
-      }, [])
+    }, [])
 
     return (
         <div className="login-registration">
@@ -63,6 +63,7 @@ const LoginRegistration = () => {
                     <li className="nav-item" role="presentation">
                         <a
                         className="nav-link btn-shadow active"
+                        style={{ backgroundColor: "#48BD8F" }}
                         id="tab-login"
                         data-mdb-toggle="pill"
                         href="#pills-login"
@@ -74,6 +75,7 @@ const LoginRegistration = () => {
                     <li className="nav-item" role="presentation" style={{ marginRight: "-8px" }}>
                         <a
                         className="nav-link btn-shadow"
+                        style={{ backgroundColor: "#48BD8F" }}
                         id="tab-register"
                         data-mdb-toggle="pill"
                         href="#pills-register"
@@ -104,7 +106,7 @@ const LoginRegistration = () => {
                         </div>
 
                         {/* Submit button */}
-                        <button onClick={login} className="btn btn-primary btn-block mb-4 btn-shadow">Sign in</button>
+                        <button onClick={login} className="btn btn-block mb-4 btn-shadow" style={{ backgroundColor: "#48BD8F" }}>Sign in</button>
 
                         </form>
                     </div>
@@ -149,7 +151,7 @@ const LoginRegistration = () => {
                         </div>
 
                         {/* Submit button */}
-                        <button onClick={register} className="btn btn-primary btn-block mb-3">Register</button>
+                        <button onClick={register} className="btn btn-block mb-3" style={{ backgroundColor: "#48BD8F" }}>Register</button>
 
                         </form>
                     </div>
