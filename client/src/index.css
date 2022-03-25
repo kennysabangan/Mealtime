@@ -22,3 +22,14 @@ code {
 .btn-shadow {
   box-shadow: 5px 4px 12px 1px lightgray !important;
 }
+
+.gradient-custom {
+  /* fallback for old browsers */
+  background: rgb(72,190,143, 1);
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right bottom, rgb(72,190,143, 1), 	rgb(95, 158, 160));
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right bottom, rgb(72,190,143, 1), 	rgb(95, 158, 160));
+}
