@@ -16,7 +16,7 @@ const RecipeGrid = () => {
                         <MDBCardBody>
                             <MDBCardTitle>Recipe Title</MDBCardTitle>
                             <MDBCardText>
-                                Short description of recipe
+                                <span style={{ fontStyle: 'italic' }}> Short description of recipe </span>
                             </MDBCardText>
                             <MDBBtn style={{ backgroundColor: "#48BD8F" }} href='#'>Add to 'My Recipes'</MDBBtn>
                         </MDBCardBody>
@@ -33,7 +33,7 @@ const RecipeGrid = () => {
                         <MDBCardBody>
                             <MDBCardTitle>Recipe Title</MDBCardTitle>
                             <MDBCardText>
-                                Short description of recipe
+                                <span style={{ fontStyle: 'italic' }}> Short description of recipe </span>
                             </MDBCardText>
                             <MDBBtn style={{ backgroundColor: "#48BD8F" }} href='#'>Add to 'My Recipes'</MDBBtn>
                         </MDBCardBody>
@@ -50,7 +50,7 @@ const RecipeGrid = () => {
                         <MDBCardBody>
                             <MDBCardTitle>Recipe Title</MDBCardTitle>
                             <MDBCardText>
-                                Short description of recipe
+                                <span style={{ fontStyle: 'italic' }}> Short description of recipe </span>
                             </MDBCardText>
                             <MDBBtn style={{ backgroundColor: "#48BD8F" }} href='#'>Add to 'My Recipes'</MDBBtn>
                         </MDBCardBody>
