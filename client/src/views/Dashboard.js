@@ -26,16 +26,14 @@ const Dashboard = () => {
         <div>
             <Navigation/>
             <div className="container">
-                <p >
-                    Feeling Hungry?
-                </p>
-                <p>
-                    Search for your next meal below!
-                </p>
+                <div className="pt-5">
+                <h2>Feeling Hungry?</h2>
+                <p>Search for your next meal below!</p>
+                </div>
 
                 {/* Restrictions div for the api call */}
                 <div className="restictions">
-
+                    <p>Restrictions:</p>
                     <div className="form-check form-check-inline">
                         <input
                             className="form-check-input"
