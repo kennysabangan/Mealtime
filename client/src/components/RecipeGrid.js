@@ -1,7 +1,7 @@
 import React from 'react';
 import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImage, MDBBtn, MDBRipple } from 'mdb-react-ui-kit';
 
-const RecipeGrid() {
+const RecipeGrid = () => {
     return (
         <MDBCard style={{ maxWidth: '22rem' }}>
             <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
