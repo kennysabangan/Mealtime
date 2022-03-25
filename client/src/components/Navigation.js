@@ -48,7 +48,7 @@ const Navigation = () => {
                             <MDBDropdownItem href="/recipes">View Recipes</MDBDropdownItem>
                         </MDBDropdownMenu>
                     </MDBDropdown>
-                    <button onClick={logout} type="button" className="btn ms-3 me-2" style={{ backgroundColor: "#48BD8F" }}>
+                    <button onClick={logout} type="button" className="btn btn-primary ms-3 me-2">
                         Logout
                     </button>
                 </div>
