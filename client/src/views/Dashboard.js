@@ -32,7 +32,7 @@ const Dashboard = () => {
                 </div>
 
                 {/* Restrictions div for the api call */}
-                <div className="restictions">
+                <div className="restrictions">
                     <p>Restrictions:</p>
                     <div className="form-check form-check-inline">
                         <input
