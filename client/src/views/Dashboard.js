@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import RecipeGrid from "../components/RecipeGrid";
 
 const Dashboard = () => {
 
@@ -32,7 +33,7 @@ const Dashboard = () => {
                 </div>
 
                 {/* Restrictions div for the api call */}
-                <div className="restictions">
+                <div className="restrictions">
                     <p>Restrictions:</p>
                     <div className="form-check form-check-inline">
                         <input
@@ -100,7 +101,7 @@ const Dashboard = () => {
                             aria-describedby="search-addon"
                         />
                         <span className="input-group-text border-0 mb-1" id="search-addon">
-                            <a className="btn btn-primary" style={{ marginTop: "2px" }}>
+                            <a className="btn" style={{ marginTop: "2px", backgroundColor: "#48BD8F"}}>
                                 <i className="fas fa-search"></i>
                                 <span className="ms-2">Search</span>
                             </a>
