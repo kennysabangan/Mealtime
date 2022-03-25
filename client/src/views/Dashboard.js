@@ -25,7 +25,7 @@ const Dashboard = () => {
     return (
         <div>
             <Navigation/>
-            <div>
+            <div className="container">
                 <p >
                     Feeling Hungry?
                 </p>
@@ -35,9 +35,9 @@ const Dashboard = () => {
 
                 {/* Restrictions div for the api call */}
                 <div className="restictions">
-                    
+
                     <div className="form-check form-check-inline">
-                        <input 
+                        <input
                             className="form-check-input"
                             type="checkbox"
                             id="dairyFree"
@@ -48,7 +48,7 @@ const Dashboard = () => {
                         </label>
                     </div>
                     <div className="form-check form-check-inline">
-                        <input 
+                        <input
                             className="form-check-input"
                             type="checkbox"
                             id="vegan"
@@ -59,7 +59,7 @@ const Dashboard = () => {
                         </label>
                     </div>
                     <div className="form-check form-check-inline">
-                        <input 
+                        <input
                             className="form-check-input"
                             type="checkbox"
                             id="grainFree"
@@ -70,7 +70,7 @@ const Dashboard = () => {
                         </label>
                     </div>
                     <div className="form-check form-check-inline">
-                        <input 
+                        <input
                             className="form-check-input"
                             type="checkbox"
                             id="keto"
@@ -81,7 +81,7 @@ const Dashboard = () => {
                         </label>
                     </div>
                     <div className="form-check form-check-inline">
-                        <input 
+                        <input
                             className="form-check-input"
                             type="checkbox"
                             id="whole30"
@@ -93,7 +93,7 @@ const Dashboard = () => {
                     </div>
 
                     {/* Search bar/btn for api call */}
-                    <div className="input-group rounded">
+                    <div className="input-group rounded d-flex align-items-center" style={{ width: "26vw" }}>
                         <input
                             type="search"
                             className="form-control rounded"
@@ -101,11 +101,14 @@ const Dashboard = () => {
                             aria-label="Search"
                             aria-describedby="search-addon"
                         />
-                        <span className="input-group-text border-0" id="search-addon">
-                            <i className="fas fa-search"></i>
+                        <span className="input-group-text border-0 mb-1" id="search-addon">
+                            <a className="btn btn-primary" style={{ marginTop: "2px" }}>
+                                <i className="fas fa-search"></i>
+                                <span className="ms-2">Search</span>
+                            </a>
                         </span>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
