@@ -27,7 +27,7 @@ const Dashboard = () => {
         <div>
             <Navigation/>
             <div className="container">
-                <div className="pt-5">
+                <div className="pt-4 mt-2">
                 <h2>Feeling Hungry?</h2>
                 <p>Search for your next meal below!</p>
                 </div>
@@ -92,7 +92,7 @@ const Dashboard = () => {
                     </div>
 
                     {/* Search bar/btn for api call */}
-                    <div className="input-group rounded d-flex align-items-center" style={{ width: "26vw" }}>
+                    <div className="input-group rounded d-flex align-items-center pb-2" style={{ width: "26vw" }}>
                         <input
                             type="search"
                             className="form-control rounded"
