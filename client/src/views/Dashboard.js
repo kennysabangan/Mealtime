@@ -109,6 +109,8 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
+            <hr></hr>
+            <h2>My Recipe Book:</h2>
             <RecipeGrid />
         </div>
     )
