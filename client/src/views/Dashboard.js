@@ -29,10 +29,10 @@ const Dashboard = () => {
             <div className="container">
                 <div className="pt-4 mt-2">
                 <h2>Feeling Hungry?</h2>
-                <p>Search for your next meal below!</p>
+                <p>Search htmlFor your next meal below!</p>
                 </div>
 
-                {/* Restrictions div for the api call */}
+                {/* Restrictions div htmlFor the api call */}
                 <div className="restrictions">
                     <p>Restrictions:</p>
                     <div className="form-check form-check-inline">
@@ -42,7 +42,7 @@ const Dashboard = () => {
                             id="dairyFree"
                             value="dairyFree"
                         />
-                        <label className="form-check-label" for="dairyFree">
+                        <label className="form-check-label" htmlFor="dairyFree">
                             Dairy Free
                         </label>
                     </div>
@@ -53,7 +53,7 @@ const Dashboard = () => {
                             id="vegan"
                             value="vegan"
                         />
-                        <label className="form-check-label" for="vegan">
+                        <label className="form-check-label" htmlFor="vegan">
                             Vegan
                         </label>
                     </div>
@@ -64,7 +64,7 @@ const Dashboard = () => {
                             id="grainFree"
                             value="grainFree"
                         />
-                        <label className="form-check-label" for="grainFree">
+                        <label className="form-check-label" htmlFor="grainFree">
                             Grain Free
                         </label>
                     </div>
@@ -75,7 +75,7 @@ const Dashboard = () => {
                             id="keto"
                             value="keto"
                         />
-                        <label className="form-check-label" for="keto">
+                        <label className="form-check-label" htmlFor="keto">
                             Keto
                         </label>
                     </div>
@@ -86,12 +86,12 @@ const Dashboard = () => {
                             id="whole30"
                             value="whole30"
                         />
-                        <label className="form-check-label" for="whole30">
+                        <label className="form-check-label" htmlFor="whole30">
                             Whole30
                         </label>
                     </div>
 
-                    {/* Search bar/btn for api call */}
+                    {/* Search bar/btn htmlFor api call */}
                     <div className="input-group rounded d-flex align-items-center pb-2" style={{ width: "26vw" }}>
                         <input
                             type="search"

@@ -9,8 +9,9 @@ const RecipeGrid = () => {
                     <MDBCard style={{ maxWidth: '22rem' }}>
                         <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
                             <MDBCardImage src='https://mdbootstrap.com/img/new/standard/nature/111.webp' fluid alt='...' />
-                            <a>
+                            <a href="/onerecipe">
                                 <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
+
                             </a>
                         </MDBRipple>
                         <MDBCardBody>
