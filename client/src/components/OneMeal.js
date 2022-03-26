@@ -13,7 +13,7 @@ const OneMeal = (props) => {
             alt="Food Picture"
           />
         </div>
-        <div className="ms-2 col-md-1 d-flex align-self-start d-flex justify-content-start">
+        <div className="ms-2 col-md-1 d-flex flex-column">
           <p>Reciipe Details:</p>
           <p>Ingredients</p>
 
@@ -24,7 +24,10 @@ const OneMeal = (props) => {
           </ul>
         </div>
       </div>
-      <div className="mt-5 container">
+      <div
+        className="mt-5 container border border-dark"
+        style={{ width: "100%", height: "400px" }}
+      >
         <p>Recipe Details</p>
       </div>
     </div>
