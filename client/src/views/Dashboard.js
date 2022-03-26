@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import RecipeGrid from "../components/RecipeGrid";
 
 const Dashboard = () => {
 
@@ -26,7 +27,7 @@ const Dashboard = () => {
         <div>
             <Navigation/>
             <div className="container">
-                <div className="pt-5">
+                <div className="pt-4 mt-2">
                 <h2>Feeling Hungry?</h2>
                 <p>Search for your next meal below!</p>
                 </div>
@@ -91,7 +92,7 @@ const Dashboard = () => {
                     </div>
 
                     {/* Search bar/btn for api call */}
-                    <div className="input-group rounded d-flex align-items-center" style={{ width: "26vw" }}>
+                    <div className="input-group rounded d-flex align-items-center pb-2" style={{ width: "26vw" }}>
                         <input
                             type="search"
                             className="form-control rounded"
@@ -100,7 +101,7 @@ const Dashboard = () => {
                             aria-describedby="search-addon"
                         />
                         <span className="input-group-text border-0 mb-1" id="search-addon">
-                            <a className="btn btn-primary" style={{ marginTop: "2px" }}>
+                            <a className="btn" style={{ marginTop: "2px", backgroundColor: "#48BD8F"}}>
                                 <i className="fas fa-search"></i>
                                 <span className="ms-2">Search</span>
                             </a>
@@ -108,8 +109,10 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-            <div className="recipe-grid">
-                {/* putting grid of photos - will hook up to API for URLs */}
+            <hr></hr>
+            <div className="container">
+                <h2 className="my-4">My Recipe Book:</h2>
+                <RecipeGrid />
             </div>
         </div>
     )
