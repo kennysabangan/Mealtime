@@ -7,10 +7,9 @@ import RecipeGrid from "../components/RecipeGrid";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [isChecked, setIsChecked] = useState(false);
-  const [prams, setParams] = useState({
-    tags: "",
-    number: "3",
+  const [params, setParams] = useState({
+    tags: [],
+    number: 0,
     dairyFreeIsChecked: false,
     veganIsChecked: false,
     grainFreeIsChecked: false,
@@ -18,31 +17,39 @@ const Dashboard = () => {
     whole30IsChecked: false,
   });
 
-  const handleOnChange = () => {
-    setIsChecked(!isChecked);
+  // Checkbox Functionality for Search
+  const onChangeHandler = (e) => {
+    const newStateObject = { ...params };
+    const restriction = e.target.id + "IsChecked"; // ex: dairyFree + IsChecked = dairyFreeIsChecked
+    newStateObject[restriction] = e.target.checked; // newStateObject.dairyFreeIsChecked = <Whatever Checkbox is Right Now>
+
+    // If 1) Box is Checked and 2) The tag doesn't exist in our array => add in the tag
+    if (newStateObject[restriction] && !newStateObject['tags'].includes(newStateObject[e.target.value])) {
+      newStateObject['tags'] = [...newStateObject['tags'], e.target.value]
+    }
+
+    // If 1) Box is NOT Checked and 2) The tag DOES exist in our array => remove / filter it out
+    if (!e.target.checked && newStateObject['tags'].includes(e.target.value)) {
+        newStateObject['tags'] = newStateObject['tags'].filter(tag => tag != e.target.value)
+    }
+
+    newStateObject['number'] = newStateObject['tags'].length; // Counts number of tags
+    setParams(newStateObject); // Sets New State Object
   };
 
-  // If user is not logged in, redirect them back to Login & Registration
-  const oChangeHandler = (e) => {
-    //let tempParms = "";
-    //tempParms = tempParms + e.target.value;
-    const newStateObject = { ...prams };
-    if (newStateObject[e.target.name]) {
-      console.log("devlog");
-      newStateObject[e.target.name] = false;
-      newStateObject.tags.filter;
-      setParams(newStateObject);
-    } else {
-      newStateObject[e.target.name] = true;
-      newStateObject.tags = newStateObject.tags + "," + e.target.value;
-      setParams(newStateObject);
-    }
-  };
+  // Search Button Pass Props to GeneratedMeals
+  const search = () => {
+    // HAVE TO use a state object for useLocation to work in '/meals'
+    navigate('/meals', { state: { tags: params.tags } });
+  }
+
   useEffect(() => {
+    // If user is not logged in, redirect them back to Login & Registration
     if (!Cookies.get("usertoken")) {
       navigate("/");
     }
 
+    // If user JUST logs in: success! TODO: ONLY TOAST WHEN FIRST LOGGED IN
     toast.success("You have successfully logged in!");
   }, []);
 
@@ -54,77 +61,72 @@ const Dashboard = () => {
       <div className="container">
         <div className="pt-4 mt-2">
           <h2>Feeling Hungry?</h2>
-          <p>Search htmlFor your next meal below!</p>
+          <p>Search for your next meal below!</p>
         </div>
 
-        {/* Restrictions div htmlFor the api call */}
-        <div className="restrictions">
-          <p>Restrictions:</p>
-          <div className="form-check form-check-inline">
-            <input
-              name="dairyFreeIsChecked"
-              onChange={oChangeHandler}
-              className="form-check-input"
-              type="checkbox"
-              id="dairyFree"
-              value="dairy free"
-            />
-            <label className="form-check-label" htmlFor="dairyFree">
-              Dairy Free
-            </label>
-          </div>
-          <div className="form-check form-check-inline">
-            <input
-              name="veganIsChecked"
-              onChange={oChangeHandler}
-              className="form-check-input"
-              type="checkbox"
-              id="vegan"
-              value="vegan"
-            />
-            <label className="form-check-label" htmlFor="vegan">
-              Vegan
-            </label>
-          </div>
-          <div className="form-check form-check-inline">
-            <input
-              name="grainFreeIsChecked"
-              onChange={oChangeHandler}
-              className="form-check-input"
-              type="checkbox"
-              id="grainFree"
-              value="grainFree"
-            />
-            <label className="form-check-label" htmlFor="grainFree">
-              Grain Free
-            </label>
-          </div>
-          <div className="form-check form-check-inline">
-            <input
-              name="ketoIsChecked"
-              onChange={oChangeHandler}
-              className="form-check-input"
-              type="checkbox"
-              id="keto"
-              value="keto"
-            />
-            <label className="form-check-label" htmlFor="keto">
-              Keto
-            </label>
-          </div>
-          <div className="form-check form-check-inline">
-            <input
-              name="whole30IsChecked"
-              onChange={oChangeHandler}
-              className="form-check-input"
-              type="checkbox"
-              id="whole30"
-              value="whole30"
-            />
-            <label className="form-check-label" htmlFor="whole30">
-              Whole30
-            </label>
-          </div>
+                {/* Restrictions div for the api call */}
+                <div className="restrictions">
+                    <p>Restrictions:</p>
+                    <div className="form-check form-check-inline">
+                        <input
+                            className="form-check-input"
+                            onChange={onChangeHandler}
+                            type="checkbox"
+                            id="dairyFree"
+                            value="dairy free"
+                        />
+                        <label className="form-check-label" htmlFor="dairyFree">
+                            Dairy Free
+                        </label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                        <input
+                            className="form-check-input"
+                            onChange={onChangeHandler}
+                            type="checkbox"
+                            id="vegan"
+                            value="vegan"
+                        />
+                        <label className="form-check-label" htmlFor="vegan">
+                            Vegan
+                        </label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                        <input
+                            className="form-check-input"
+                            onChange={onChangeHandler}
+                            type="checkbox"
+                            id="grainFree"
+                            value="grain free"
+                        />
+                        <label className="form-check-label" htmlFor="grainFree">
+                            Grain Free
+                        </label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                        <input
+                            className="form-check-input"
+                            onChange={onChangeHandler}
+                            type="checkbox"
+                            id="keto"
+                            value="keto"
+                        />
+                        <label className="form-check-label" htmlFor="keto">
+                            Keto
+                        </label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                        <input
+                            className="form-check-input"
+                            onChange={onChangeHandler}
+                            type="checkbox"
+                            id="whole30"
+                            value="whole30"
+                        />
+                        <label className="form-check-label" htmlFor="whole30">
+                            Whole30
+                        </label>
+                    </div>
 
           {/* Search bar/btn htmlFor api call */}
           <div
@@ -139,13 +141,14 @@ const Dashboard = () => {
               aria-describedby="search-addon"
             />
             <span className="input-group-text border-0 mb-1" id="search-addon">
-              <a
-                className="btn"
-                style={{ marginTop: "2px", backgroundColor: "#48BD8F" }}
-              >
-                <i className="fas fa-search"></i>
-                <span className="ms-2">Search</span>
-              </a>
+                <button
+                    className="btn"
+                    onClick={search}
+                    style={{ marginTop: "2px", backgroundColor: "#48BD8F" }}
+                >
+                    <i className="fas fa-search"></i>
+                    <span className="ms-2">Search</span>
+                </button>
             </span>
           </div>
         </div>
