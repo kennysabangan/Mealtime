@@ -29,7 +29,7 @@ const Dashboard = () => {
             <div className="container">
                 <div className="pt-4 mt-2">
                 <h2>Feeling Hungry?</h2>
-                <p>Search htmlFor your next meal below!</p>
+                <p>Search for your next meal below!</p>
                 </div>
 
                 {/* Restrictions div htmlFor the api call */}
