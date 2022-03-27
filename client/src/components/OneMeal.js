@@ -2,6 +2,8 @@ import React, { useState, UseEffect } from "react";
 import axios from "axios";
 
 const OneMeal = (props) => {
+  const {id} = props; // id will be specific recipe id.
+
   return (
     <div className="container mt-5">
       <h3>Chicken Alfredo</h3>
