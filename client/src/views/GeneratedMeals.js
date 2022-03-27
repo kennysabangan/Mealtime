@@ -3,16 +3,15 @@ import ChooseAMeal from "../components/ChooseAMeal";
 import { useLocation } from "react-router-dom";
 
 const GeneratedMeals = () => {
-
   const { state } = useLocation();
   const { tags } = state;
   console.log("Tags array:", tags);
-  console.log("Tags for axios query:", tags.join(','));
+  console.log("Tags for axios query:", tags.join(","));
 
   return (
     <div>
       <Navigation />
-      <ChooseAMeal />
+      <ChooseAMeal tags={tags} />
     </div>
   );
 };
