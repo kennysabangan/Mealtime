@@ -1,14 +1,14 @@
 import React from 'react';
-import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImage, MDBBtn, MDBRipple, MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImage, MDBRipple, MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 
 const RecipeGrid = () => {
     // const Display = (props) => {
     //     const {id} = props;
-    //     const [petList, setPetList] = useState([]);
+    //     const [petList, setPetList] = useState([]); -----but for recipe list   -------
     
     
     //     useEffect(() => {
-    //         axios.get('http://localhost:8000/api/pets')
+    //         axios.get('http://localhost:8000/api/pets') ------ our API of choice --------
     //             .then(res=> {
     //                 console.log(res);
     //                 console.log(res.data);
@@ -25,7 +25,7 @@ const RecipeGrid = () => {
             <MDBRow>
                 <MDBCol size='md' className='col-example'>
                 {/* {
-                            petList?
+                            petList? ------ but for recipeList -------
 
                             petList.map((pet, index) => (
                                 <tr key={index}>
