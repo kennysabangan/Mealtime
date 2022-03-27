@@ -140,9 +140,9 @@ const Dashboard = () => {
             />
             <span className="input-group-text border-0 mb-1" id="search-addon">
                 <button
-                    className="btn"
+                    className="btn btn-primary"
                     onClick={search}
-                    style={{ marginTop: "2px", backgroundColor: "#48BD8F" }}
+                    style={{ marginTop: "2px" }}
                 >
                     <i className="fas fa-search"></i>
                     <span className="ms-2">Search</span>

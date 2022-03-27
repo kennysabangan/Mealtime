@@ -46,6 +46,15 @@ code {
   padding: 20px;
 }
 
+.recipe-desc {
+  text-align: center;
+}
+
 h2 {
   font-family: 'Cookie', cursive;
+}
+
+.instructions {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
