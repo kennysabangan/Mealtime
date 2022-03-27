@@ -1,10 +1,6 @@
-import Navigation from '../components/Navigation';
-
 const ProfileCard = () => {
 
     return (
-        <>
-        <Navigation/>
         <section className="vh-100" style={{ backgroundColor: "#f4f5f7" }}>
             <div className="container py-5 h-75">
                 <div className="row d-flex justify-content-center align-items-center h-100">
@@ -56,7 +52,6 @@ const ProfileCard = () => {
                 </div>
             </div>
         </section>
-        </>
     )
 }
 

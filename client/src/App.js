@@ -5,7 +5,7 @@ import "./index.css";
 import LoginRegistration from "./views/LoginRegistration";
 import Dashboard from "./views/Dashboard";
 import GeneratedMeals from "./views/GeneratedMeals";
-import ProfileCard from "./views/ProfileCard";
+import Profile from "./views/Profile";
 import OneRecipe from "./views/OneRecipe";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/meals" element={<GeneratedMeals />} />
         <Route path="/onerecipe" element={<OneRecipe />} />
-        <Route path="/profile" element={<ProfileCard />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <Toaster />
     </BrowserRouter>
