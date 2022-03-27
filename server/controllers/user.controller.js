@@ -9,6 +9,13 @@ module.exports = {
             .then(user => res.json(user))
             .catch(err => res.json(err));
     },
+    findThisUser: (req, res) => {
+        const data = req.cookies.usertoken
+        const decodedData = jwt.decode(data)
+        User.findOne({ id: decodedData.id })
+            .then(user => res.json(user))
+            .catch(err => res.json(err))
+    },
     register: (req, res) => {
         User.create(req.body)
             .then(user => {
