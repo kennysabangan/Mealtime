@@ -22,10 +22,29 @@ const ChooseAMeal = (props) => {
           },
         };
         const res = await axios.request(options);
-        console.log(res);
-        console.log(res.data);
-        setMeals(res.data);
+        const apiData = res.data;
+
+        // Makes a Bing Image Search for every recipe since other API's photos were very poor quality
+        res.data.recipes.forEach(recipe => {
+          var options = {
+            method: 'GET',
+            url: 'https://bing-image-search1.p.rapidapi.com/images/search',
+            params: {q: `${recipe.title} recipe`, count: '3', offset: '1'},
+            headers: {
+              'X-RapidAPI-Host': 'bing-image-search1.p.rapidapi.com',
+              'X-RapidAPI-Key': '9fc53f2c2fmsh8633a9448fc45adp1d4bd0jsn4d61359145cd'
+            }
+          };
+          axios.request(options).then(function (response) {
+            recipe.image = response.data.value[0].thumbnailUrl;
+          }).catch(function (error) {
+            console.error(error);
+          });
+        })
+
+        setMeals(apiData);
         setMeal(res.data.recipes[0]);
+        console.log(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -71,12 +90,9 @@ const ChooseAMeal = (props) => {
 
 
           <div className="card">
-            <div className="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            <div className="bg-image d-flex justify-content-center">
               {/* <img src="https://media.olivegarden.com/en_us/images/product/classic-chicken-alfredo-dinner-dpv-590x365.jpg" className="img-fluid"/> */}
-              <img src={meals.recipes && meals.recipes[index].image} className="img-fluid"/>
-              <a href="#!">
-                <div className="mask" style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}></div>
-              </a>
+              <img src={meals.recipes && meals.recipes[index].image} height="420" />
             </div>
             <div className="card-body text-center">
               <h2>{meals.recipes && meals.recipes[index].title}</h2>
