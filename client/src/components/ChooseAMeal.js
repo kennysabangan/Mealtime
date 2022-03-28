@@ -18,7 +18,7 @@ const ChooseAMeal = (props) => {
             "X-RapidAPI-Host":
               "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
             "X-RapidAPI-Key":
-              "9fc53f2c2fmsh8633a9448fc45adp1d4bd0jsn4d61359145cd",
+              "0f84236229msh09b7a39c03b9eafp13e306jsnb8eba2675d6a",
           },
         };
         const res = await axios.request(options);
@@ -58,35 +58,63 @@ const ChooseAMeal = (props) => {
   return (
     <div className="container mt-3">
       <div className="row text-center">
-          <h1 className="cursive mt-5">Look Tasty?</h1>
+        <h1 className="cursive mt-5">Look Tasty?</h1>
       </div>
-      <div className="row" >
-        <div onClick={handlePrevious} className="col-md-4 d-flex align-items-center d-flex justify-content-start">
-        <button className={`meal-btn d-flex gap-3 align-items-center justify-content-center h-100 ${meals.recipes && index == 0 ? 'disabled' : null}`}>
+      <div className="row">
+        <div
+          onClick={handlePrevious}
+          className="col-md-4 d-flex align-items-center d-flex justify-content-start"
+        >
+          <button
+            className={`meal-btn d-flex gap-3 align-items-center justify-content-center h-100 ${
+              meals.recipes && index == 0 ? "disabled" : null
+            }`}
+          >
             <i className="fas fa-angle-left mb-2 pb-1"></i>
             <h1 className="cursive">Previous</h1>
           </button>
         </div>
         <div className="col-md-4">
-
-
           <div className="card">
-            <div className="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            <div
+              className="bg-image hover-overlay ripple"
+              data-mdb-ripple-color="light"
+            >
               {/* <img src="https://media.olivegarden.com/en_us/images/product/classic-chicken-alfredo-dinner-dpv-590x365.jpg" className="img-fluid"/> */}
-              <img src={meals.recipes && meals.recipes[index].image} className="img-fluid"/>
+              <img
+                src={meals.recipes && meals.recipes[index].image}
+                className="img-fluid"
+              />
               <a href="#!">
-                <div className="mask" style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}></div>
+                <div
+                  className="mask"
+                  style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}
+                ></div>
               </a>
             </div>
             <div className="card-body text-center">
               <h2>{meals.recipes && meals.recipes[index].title}</h2>
-              <p className="card-text">Total Servings: {meals.recipes && meals.recipes[index].servings}</p>
-              <p className="card-text">Ready in: {meals.recipes && meals.recipes[index].readyInMinutes} minutes</p>
+              <p className="card-text">
+                Total Servings: {meals.recipes && meals.recipes[index].servings}
+              </p>
+              <p className="card-text">
+                Ready in: {meals.recipes && meals.recipes[index].readyInMinutes}{" "}
+                minutes
+              </p>
             </div>
           </div>
         </div>
-        <div className="col-md-4 d-flex align-items-center justify-content-end" onClick={handleNext}>
-          <button className={`meal-btn d-flex gap-3 align-items-center justify-content-center h-100 ${meals.recipes && index == meals.recipes.length - 1 ? 'disabled' : null}`}>
+        <div
+          className="col-md-4 d-flex align-items-center justify-content-end"
+          onClick={handleNext}
+        >
+          <button
+            className={`meal-btn d-flex gap-3 align-items-center justify-content-center h-100 ${
+              meals.recipes && index == meals.recipes.length - 1
+                ? "disabled"
+                : null
+            }`}
+          >
             <h1 className="cursive">Next</h1>
             <i className="fas fa-angle-right mb-2 pb-1"></i>
           </button>
