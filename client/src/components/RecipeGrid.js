@@ -41,15 +41,15 @@ const RecipeGrid = () => {
                         } */}
                     <MDBCard style={{ maxWidth: '22rem' }}>
                         <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
-                            <MDBCardImage src='https://mdbootstrap.com/img/new/standard/nature/111.webp' fluid alt='...' />
+                            <MDBCardImage src="https://www.simplyrecipes.com/thmb/5JovaaUX0bcawTsK2nk-0FTuWzw=/720x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Simply-Recipes-Piri-Piri-Fried-Chicken-LEAD-02-641ceae81d724eeab1e29453a42c76a7.jpg" fluid alt='...' />
                             <a href='/onerecipe'>
                                 <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
                             </a>
                         </MDBRipple>
                         <MDBCardBody>
-                            <MDBCardTitle>Recipe Title</MDBCardTitle>
+                            <MDBCardTitle>Piri Piri Fried Chicken</MDBCardTitle>
                             <MDBCardText>
-                                <span style={{ fontStyle: 'italic' }}> Short description of recipe </span>
+                                <span style={{ fontStyle: 'italic' }}> A South African inspired fried chicken recipe — it’s finger licking good! </span>
                             </MDBCardText>
                         </MDBCardBody>
                     </MDBCard>

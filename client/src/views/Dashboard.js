@@ -83,6 +83,7 @@ const Dashboard = () => {
   return (
     <div>
       <Navigation />
+      <div className="container-sides">
         <div className="container">
           <div className="pt-4 mt-2">
             <h2>Feeling Hungry?</h2>
@@ -156,7 +157,6 @@ const Dashboard = () => {
                             Whole30
                         </label>
                     </div>
-
           {/* Search bar/btn htmlFor api call */}
           <div
             className="input-group rounded d-flex align-items-center pb-2"
@@ -184,10 +184,13 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <hr></hr>
+      <hr />
       <div className="container">
+        <div className="recipe-grid">
         <h2 className="my-4">My Recipe Book:</h2>
         <RecipeGrid />
+        </div>
+      </div>
       </div>
     </div>
   );
