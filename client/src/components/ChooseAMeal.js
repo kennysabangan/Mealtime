@@ -6,22 +6,40 @@ const ChooseAMeal = (props) => {
   const [meals, setMeals] = useState([]);
   const [index, setIndex] = useState(0);
   const [meal, setMeal] = useState({});
-
+  const [loaded, setLoaded] = useState(false);
+  const joinedTags = tags.join(', ')
   useEffect(() => {
     const getMeals = async () => {
       try {
-        var options = {
-          method: "GET",
-          url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random",
-          params: { tags: { tags }, number: "3" },
-          headers: {
-            "X-RapidAPI-Host":
-              "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-            "X-RapidAPI-Key":
-              "9fc53f2c2fmsh8633a9448fc45adp1d4bd0jsn4d61359145cd",
-          },
-        };
+        // Random query if tags ARE given
+        if (tags.length != 0) {
+          var options = {
+            method: "GET",
+            url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random",
+            params: {tags: { joinedTags }, number: '3'},
+            headers: {
+              "X-RapidAPI-Host":
+                "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+              "X-RapidAPI-Key":
+                "9fc53f2c2fmsh8633a9448fc45adp1d4bd0jsn4d61359145cd",
+            },
+          };
+        } else {
+          // Random query if tages ARE NOT given
+          var options = {
+            method: "GET",
+            url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random",
+            params: {number: '3'},
+            headers: {
+              "X-RapidAPI-Host":
+                "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+              "X-RapidAPI-Key":
+                "9fc53f2c2fmsh8633a9448fc45adp1d4bd0jsn4d61359145cd",
+            },
+          };
+        }
         const res = await axios.request(options);
+        console.log(res.data);
         const apiData = res.data;
 
         // Makes a Bing Image Search for every recipe since other API's photos were very poor quality
@@ -36,7 +54,7 @@ const ChooseAMeal = (props) => {
             }
           };
           axios.request(options).then(function (response) {
-            recipe.image = response.data.value[0].thumbnailUrl;
+            response.data.value[0].thumbnailUrl ? recipe.image = response.data.value[0].thumbnailUrl : recipe.image = recipe.image;
           }).catch(function (error) {
             console.error(error);
           });
@@ -44,6 +62,7 @@ const ChooseAMeal = (props) => {
 
         setMeals(apiData);
         setMeal(res.data.recipes[0]);
+        setLoaded(true);
         console.log(res.data);
       } catch (error) {
         console.log(error);
@@ -75,6 +94,7 @@ const ChooseAMeal = (props) => {
   };
 
   return (
+    meals.recipes && meals.recipes.length != 0 ?
     <div className="container mt-3">
       <div className="row text-center">
           <h1 className="cursive mt-5">Look Tasty?</h1>
@@ -116,6 +136,15 @@ const ChooseAMeal = (props) => {
           Add to Meal Plan
         </button>
       </div>
+    </div>
+    : loaded &&
+    // If No Search Query Found, Return 404 Message
+    <div className="text-center mt-5 pt-5">
+      <h1 className="cursive">We were not able to find a recipe with your search.</h1>
+      <a className="btn btn-dark" href="/dashboard">
+        <i className="fas fa-angle-left me-3"></i>
+        Go Back
+      </a>
     </div>
   );
 };
