@@ -8,6 +8,7 @@ const ChooseAMeal = (props) => {
   const [meal, setMeal] = useState({});
   const [loaded, setLoaded] = useState(false);
   const joinedTags = tags.join(', ')
+
   useEffect(() => {
     const getMeals = async () => {
       try {
@@ -16,7 +17,7 @@ const ChooseAMeal = (props) => {
           var options = {
             method: "GET",
             url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random",
-            params: {tags: { joinedTags }, number: '3'},
+            params: {tags: { joinedTags }, number: '2'},
             headers: {
               "X-RapidAPI-Host":
                 "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
@@ -29,7 +30,7 @@ const ChooseAMeal = (props) => {
           var options = {
             method: "GET",
             url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random",
-            params: {number: '3'},
+            params: {number: '2'},
             headers: {
               "X-RapidAPI-Host":
                 "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
@@ -38,11 +39,12 @@ const ChooseAMeal = (props) => {
             },
           };
         }
+
         const res = await axios.request(options);
         console.log(res.data);
         const apiData = res.data;
 
-        // Makes a Bing Image Search for every recipe since other API's photos were very poor quality
+        // Makes a Bing Image Search for every recipe since original Recipe API's photos were very poor quality
         res.data.recipes.forEach(recipe => {
           var options = {
             method: 'GET',
@@ -64,6 +66,7 @@ const ChooseAMeal = (props) => {
         setMeal(res.data.recipes[0]);
         setLoaded(true);
         console.log(res.data);
+
       } catch (error) {
         console.log(error);
       }
@@ -97,7 +100,7 @@ const ChooseAMeal = (props) => {
     meals.recipes && meals.recipes.length != 0 ?
     <div className="container mt-3">
       <div className="row text-center">
-          <h1 className="cursive mt-5">Look Tasty?</h1>
+          <h1 className="cursive mt-3">Look Tasty?</h1>
       </div>
       <div className="row" >
         <div onClick={handlePrevious} className="col-md-4 d-flex align-items-center d-flex justify-content-start">
@@ -131,9 +134,9 @@ const ChooseAMeal = (props) => {
       <div className="m-4 text-center">
         <button
           className="btn btn-lg"
-          style={{ marginTop: "2px", backgroundColor: "#48BD8F" }}
+          style={{ marginTop: "2px", backgroundColor: "#48BD8F", fontWeight: "bold" }}
         >
-          Add to Meal Plan
+          <span>Add to My Recipes</span>
         </button>
       </div>
     </div>
