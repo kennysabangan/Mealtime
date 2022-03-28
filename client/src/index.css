@@ -54,7 +54,35 @@ h2 {
   font-family: 'Cookie', cursive;
 }
 
+h1.cursive {
+  font-family: 'Cookie', cursive;
+}
+
 .instructions {
   margin-top: 15px;
   margin-bottom: 15px;
+}
+
+.meal-btn {
+  border: 0px;
+  border-radius: 5px;
+  width: 300px;
+  background-color: white;
+}
+
+.meal-btn:hover {
+  border: 0px;
+  border-radius: 5px;
+  width: 300px;
+  background-color: #eeeeee
+}
+
+.disabled {
+  opacity: 50%;
+}
+
+.disabled:hover {
+  opacity: 50%;
+  cursor: default;
+  background-color: white;
 }

@@ -9,9 +9,11 @@ import RecipeGrid from "../components/RecipeGrid";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState();
+  const [query, setQuery] = useState("");
   const [params, setParams] = useState({
     tags: [],
     number: 0,
+    query: "",
     dairyFreeIsChecked: false,
     veganIsChecked: false,
     grainFreeIsChecked: false,
@@ -20,7 +22,7 @@ const Dashboard = () => {
   });
 
   // Checkbox Functionality for Search
-  const onChangeHandler = (e) => {
+  const onChangeHandler = () => {
     const newStateObject = { ...params };
     const newTags = []
 
@@ -33,16 +35,19 @@ const Dashboard = () => {
 
     newStateObject.tags = newTags;
     newStateObject.number = newTags.length;
+    console.log(newStateObject);
     setParams(newStateObject); // Sets New State Object
   };
 
   // Search Button Pass Props to GeneratedMeals
-  const search = () => {
+  const searchHandler = () => {
+    console.log(query, params);
     // HAVE TO use a state object for useLocation to work in '/meals'
-    navigate('/meals', { state: { tags: params.tags, number: params.number } });
+    navigate('/meals', { state: { tags: params.tags, query: query } });
   }
 
   useEffect(() => {
+    onChangeHandler();
     // If user is not logged in, redirect them back to Login & Registration
     if (!Cookies.get("usertoken")) {
       navigate("/");
@@ -65,19 +70,18 @@ const Dashboard = () => {
   return (
     <div>
       <Navigation />
-      <div className="container">
-        <div className="pt-4 mt-2">
-          <h2>Feeling Hungry?</h2>
-          <p>Search for your next meal below!</p>
-        </div>
-
-                {/* Restrictions div for the api call */}
+        <div className="container">
+          <div className="pt-4 mt-2">
+            <h2>Feeling Hungry?</h2>
+            <p>Search for your next meal below!</p>
+          </div>
+              {/* Restrictions div for the api call */}
                 <div className="restrictions">
                     <p>Restrictions:</p>
                     <div className="form-check form-check-inline">
                         <input
                             className="form-check-input"
-                            checked={!!user && user.restrictions.includes('dairy free')}
+                            checked={params.dairyFreeIsChecked}
                             onChange={onChangeHandler}
                             type="checkbox"
                             id="dairyFree"
@@ -90,7 +94,7 @@ const Dashboard = () => {
                     <div className="form-check form-check-inline">
                         <input
                             className="form-check-input"
-                            checked={!!user && user.restrictions.includes('vegan')}
+                            checked={params.veganIsChecked}
                             onChange={onChangeHandler}
                             type="checkbox"
                             id="vegan"
@@ -103,7 +107,7 @@ const Dashboard = () => {
                     <div className="form-check form-check-inline">
                         <input
                             className="form-check-input"
-                            checked={!!user && user.restrictions.includes('grain free')}
+                            checked={params.grainFreeIsChecked}
                             onChange={onChangeHandler}
                             type="checkbox"
                             id="grainFree"
@@ -116,7 +120,7 @@ const Dashboard = () => {
                     <div className="form-check form-check-inline">
                         <input
                             className="form-check-input"
-                            checked={!!user && user.restrictions.includes('keto')}
+                            checked={params.ketoIsChecked}
                             onChange={onChangeHandler}
                             type="checkbox"
                             id="keto"
@@ -129,7 +133,7 @@ const Dashboard = () => {
                     <div className="form-check form-check-inline">
                         <input
                             className="form-check-input"
-                            checked={!!user && user.restrictions.includes('whole30')}
+                            checked={params.whole30IsChecked}
                             onChange={onChangeHandler}
                             type="checkbox"
                             id="whole30"
@@ -151,11 +155,13 @@ const Dashboard = () => {
               placeholder="Search"
               aria-label="Search"
               aria-describedby="search-addon"
+              value={query}
+              onChange={e => setQuery(e.target.value)}
             />
             <span className="input-group-text border-0 mb-1" id="search-addon">
                 <button
                     className="btn btn-primary"
-                    onClick={search}
+                    onClick={searchHandler}
                     style={{ marginTop: "2px" }}
                 >
                     <i className="fas fa-search"></i>

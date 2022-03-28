@@ -35,6 +35,7 @@ const ChooseAMeal = (props) => {
 
   const handleNext = () => {
     let tempIndex = index;
+    console.log(tempIndex);
     if (tempIndex < meals.recipes.length - 1) {
       tempIndex = tempIndex + 1;
       let tempMeal = {};
@@ -46,6 +47,7 @@ const ChooseAMeal = (props) => {
 
   const handlePrevious = () => {
     let tempIndex = index;
+    console.log(tempIndex);
     if (tempIndex > 0) {
       tempIndex = tempIndex - 1;
       let tempMeal = {};
@@ -56,38 +58,49 @@ const ChooseAMeal = (props) => {
   };
 
   return (
-    <div className="container">
-      <div className="row justify-content-md-center">
-        <div className="col-md-auto">
-          <h2>Look Tasty?</h2>
-          <p>{meals.recipes && meals.recipes[index].title}</p>
-        </div>
+    <div className="container mt-3">
+      <div className="row text-center">
+          <h1 className="cursive mt-5">Look Tasty?</h1>
       </div>
-      <div className="row" style={{ fontSize: "2rem" }}>
-        <div className="col-md-4 d-flex align-items-center d-flex justify-content-start">
-          <i className="fas fa-angle-left fa-fw d-flex align-items-center"></i>
-          <p onClick={handlePrevious}>Previous</p>
+      <div className="row" >
+        <div onClick={handlePrevious} className="col-md-4 d-flex align-items-center d-flex justify-content-start">
+        <button className={`meal-btn d-flex gap-3 align-items-center justify-content-center h-100 ${index == 0 ? 'disabled' : null}`}>
+            <i className="fas fa-angle-left mb-2 pb-1"></i>
+            <h1 className="cursive">Previous</h1>
+          </button>
         </div>
         <div className="col-md-4">
-          <img
-            src={meals.recipes && meals.recipes[index].image}
-            //src="https://media.olivegarden.com/en_us/images/product/classic-chicken-alfredo-dinner-dpv-590x365.jpg"
-            className="img-fluid"
-            alt="Wild Landscape"
-          />
+
+
+          <div className="card">
+            <div className="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+              {/* <img src="https://media.olivegarden.com/en_us/images/product/classic-chicken-alfredo-dinner-dpv-590x365.jpg" className="img-fluid"/> */}
+              <img src={meals.recipes && meals.recipes[index].image} className="img-fluid"/>
+              <a href="#!">
+                <div className="mask" style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}></div>
+              </a>
+            </div>
+            <div className="card-body text-center">
+              <h2>{meals.recipes && meals.recipes[index].title}</h2>
+              <p className="card-text">Total Servings: {meals.recipes && meals.recipes[index].servings}</p>
+              <p className="card-text">Ready in: {meals.recipes && meals.recipes[index].readyInMinutes} minutes</p>
+            </div>
+          </div>
         </div>
-        <div className="col-md-4 d-flex align-items-center d-flex justify-content-end">
-          <p onClick={handleNext}>Next</p>
-          <i className="fas fa-angle-right fa-fw d-flex align-items-center d-flex justify-content-end"></i>
+        <div className="col-md-4 d-flex align-items-center justify-content-end" onClick={handleNext}>
+          <button className={`meal-btn d-flex gap-3 align-items-center justify-content-center h-100 ${index == meals.recipes.length - 1 ? 'disabled' : null}`}>
+            <h1 className="cursive">Next</h1>
+            <i className="fas fa-angle-right mb-2 pb-1"></i>
+          </button>
         </div>
       </div>
-      <div className="m-4 d-flex justify-content-center">
-        <a
-          className="btn"
+      <div className="m-4 text-center">
+        <button
+          className="btn btn-lg"
           style={{ marginTop: "2px", backgroundColor: "#48BD8F" }}
         >
           Add to Meal Plan
-        </a>
+        </button>
       </div>
     </div>
   );
