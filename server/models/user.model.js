@@ -41,6 +41,10 @@ const UserSchema = new mongoose.Schema({
       type: String,
       trim: true,
       default: 'Let food be thy medicine.'
+    }, 
+    pic: {
+      type: String,
+      default: '../static/no-profile.png',
     }
 }, { timestamps: true });
 

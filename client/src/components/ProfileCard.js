@@ -5,6 +5,8 @@ const ProfileCard = (props) => {
 
     const [ edit, setEdit ] = useState(false);
     const { user } = props;
+    const [image, setImage] = useState("");
+    const [url, setUrl] = useState("");
     const [ firstName, setFirstName ] = useState(user.firstName);
     const [ lastName, setLastName ] = useState(user.lastName);
     const [ quote, setQuote ] = useState(user.quote);
@@ -21,7 +23,7 @@ const ProfileCard = (props) => {
         grainFreeIsChecked: user.restrictions.includes('grain free'),
         ketoIsChecked: user.restrictions.includes('keto'),
         whole30IsChecked: user.restrictions.includes('whole30'),
-      });
+    });
 
     const onChangeHandler = () => {
         const newStateObject = { ...params };
@@ -36,7 +38,7 @@ const ProfileCard = (props) => {
 
         newStateObject.tags = newTags;
         setParams(newStateObject);
-      };
+    };
 
     const saveHandler = () => {
         onChangeHandler();
@@ -62,6 +64,7 @@ const ProfileCard = (props) => {
 
     return (
         <section className="vh-100" style={{ backgroundColor: "#f4f5f7" }}>
+            <div className='profile-background'>
         { user &&
             <div className="container py-5 h-75">
                 <div className="row d-flex justify-content-center align-items-center h-100">
@@ -226,6 +229,7 @@ const ProfileCard = (props) => {
                 </div>
             </div>
         }
+        </div>
         </section>
     )
 }

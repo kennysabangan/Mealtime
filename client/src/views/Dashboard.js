@@ -83,7 +83,6 @@ const Dashboard = () => {
   return (
     <div>
       <Navigation />
-      <div className="container-sides">
         <div className="container">
           <div className="pt-4 mt-2">
             <h2>Feeling Hungry?</h2>
@@ -181,18 +180,15 @@ const Dashboard = () => {
                     <span className="ms-2">Search</span>
                 </button>
             </span>
+            </div>
           </div>
-        </div>
-      </div>
       <hr />
-      <div className="container">
         <div className="recipe-grid">
         <h2 className="my-4">My Recipe Book:</h2>
         <RecipeGrid />
         </div>
       </div>
       </div>
-    </div>
   );
 };
 

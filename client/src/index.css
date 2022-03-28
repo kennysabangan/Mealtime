@@ -86,18 +86,14 @@ h1.cursive {
   background-color: white;
 }
 
-.container {
-  background-color: white;
-}
-
-.container-sides {
-  background-image: url('../public/Food-Bg.jpeg');
+.profile-background { 
+  background-image: url('../public/ingredients.webp');
   background-repeat: no-repeat;
   height: 100vh;
   width: 100vw;
   background-size: cover;
   background-position: center;
-}
+}  
 
 .recipe-grid {
   padding-top: 2px;
