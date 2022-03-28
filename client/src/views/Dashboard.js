@@ -8,7 +8,6 @@ import RecipeGrid from "../components/RecipeGrid";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState();
   const [query, setQuery] = useState("");
   const [params, setParams] = useState({
     tags: [],
@@ -35,13 +34,11 @@ const Dashboard = () => {
 
     newStateObject.tags = newTags;
     newStateObject.number = newTags.length;
-    console.log(newStateObject);
     setParams(newStateObject); // Sets New State Object
   };
 
   // Search Button Pass Props to GeneratedMeals
   const searchHandler = () => {
-    console.log(query, params);
     // HAVE TO use a state object for useLocation to work in '/meals'
     navigate('/meals', { state: { tags: params.tags, query: query } });
   }
@@ -56,12 +53,28 @@ const Dashboard = () => {
     // Retrieve data about the user logged in
     axios.get('http://localhost:8000/api/users/thisuser', { withCredentials: true })
     .then(userData => {
-        setUser(userData.data)
-        console.log(userData.data);
+        const newStateObject = {
+          tags: [],
+          number: 0,
+          query: "",
+          dairyFreeIsChecked: userData.data.restrictions.includes('dairy free'),
+          veganIsChecked: userData.data.restrictions.includes('vegan'),
+          grainFreeIsChecked: userData.data.restrictions.includes('grain free'),
+          ketoIsChecked: userData.data.restrictions.includes('keto'),
+          whole30IsChecked: userData.data.restrictions.includes('whole30')
+        }
+
+        const inputs = document.querySelectorAll("input[type='checkbox']");
+        const newTags = []
+        inputs.forEach(input => {
+            const objectRestriction = input.id + "IsChecked";
+            newStateObject[objectRestriction] ? input.checked = true : input.checked = false
+            input.checked && newTags.push(input.value)
+        })
+        newStateObject.tags = newTags;
+        setParams(newStateObject);
     })
-
     .catch(err => console.log(err))
-
 
     // If user JUST logs in: success! TODO: ONLY TOAST WHEN FIRST LOGGED IN
     toast.success("You have successfully logged in!");

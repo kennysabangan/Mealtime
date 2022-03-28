@@ -35,7 +35,6 @@ const ChooseAMeal = (props) => {
 
   const handleNext = () => {
     let tempIndex = index;
-    console.log(tempIndex);
     if (tempIndex < meals.recipes.length - 1) {
       tempIndex = tempIndex + 1;
       let tempMeal = {};
@@ -47,7 +46,6 @@ const ChooseAMeal = (props) => {
 
   const handlePrevious = () => {
     let tempIndex = index;
-    console.log(tempIndex);
     if (tempIndex > 0) {
       tempIndex = tempIndex - 1;
       let tempMeal = {};
@@ -64,7 +62,7 @@ const ChooseAMeal = (props) => {
       </div>
       <div className="row" >
         <div onClick={handlePrevious} className="col-md-4 d-flex align-items-center d-flex justify-content-start">
-        <button className={`meal-btn d-flex gap-3 align-items-center justify-content-center h-100 ${index == 0 ? 'disabled' : null}`}>
+        <button className={`meal-btn d-flex gap-3 align-items-center justify-content-center h-100 ${meals.recipes && index == 0 ? 'disabled' : null}`}>
             <i className="fas fa-angle-left mb-2 pb-1"></i>
             <h1 className="cursive">Previous</h1>
           </button>
@@ -88,7 +86,7 @@ const ChooseAMeal = (props) => {
           </div>
         </div>
         <div className="col-md-4 d-flex align-items-center justify-content-end" onClick={handleNext}>
-          <button className={`meal-btn d-flex gap-3 align-items-center justify-content-center h-100 ${index == meals.recipes.length - 1 ? 'disabled' : null}`}>
+          <button className={`meal-btn d-flex gap-3 align-items-center justify-content-center h-100 ${meals.recipes && index == meals.recipes.length - 1 ? 'disabled' : null}`}>
             <h1 className="cursive">Next</h1>
             <i className="fas fa-angle-right mb-2 pb-1"></i>
           </button>
