@@ -6,26 +6,72 @@ const ChooseAMeal = (props) => {
   const [meals, setMeals] = useState([]);
   const [index, setIndex] = useState(0);
   const [meal, setMeal] = useState({});
+  const [loaded, setLoaded] = useState(false);
+  const joinedTags = tags.join(", ");
 
   useEffect(() => {
     const getMeals = async () => {
       try {
-        var options = {
-          method: "GET",
-          url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random",
-          params: { tags: { tags }, number: "3" },
-          headers: {
-            "X-RapidAPI-Host":
-              "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-            "X-RapidAPI-Key":
-              "0f84236229msh09b7a39c03b9eafp13e306jsnb8eba2675d6a",
-          },
-        };
+        // Random query if tags ARE given
+        if (tags.length != 0) {
+          var options = {
+            method: "GET",
+            url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random",
+            params: { tags: { joinedTags }, number: "2" },
+            headers: {
+              "X-RapidAPI-Host":
+                "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+              "X-RapidAPI-Key":
+                "9fc53f2c2fmsh8633a9448fc45adp1d4bd0jsn4d61359145cd",
+            },
+          };
+        } else {
+          // Random query if tages ARE NOT given
+          var options = {
+            method: "GET",
+            url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random",
+            params: { number: "2" },
+            headers: {
+              "X-RapidAPI-Host":
+                "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+              "X-RapidAPI-Key":
+                "9fc53f2c2fmsh8633a9448fc45adp1d4bd0jsn4d61359145cd",
+            },
+          };
+        }
+
         const res = await axios.request(options);
-        console.log(res);
         console.log(res.data);
-        setMeals(res.data);
+        const apiData = res.data;
+
+        // Makes a Bing Image Search for every recipe since original Recipe API's photos were very poor quality
+        res.data.recipes.forEach((recipe) => {
+          var options = {
+            method: "GET",
+            url: "https://bing-image-search1.p.rapidapi.com/images/search",
+            params: { q: `${recipe.title} recipe`, count: "3", offset: "1" },
+            headers: {
+              "X-RapidAPI-Host": "bing-image-search1.p.rapidapi.com",
+              "X-RapidAPI-Key":
+                "9fc53f2c2fmsh8633a9448fc45adp1d4bd0jsn4d61359145cd",
+            },
+          };
+          axios
+            .request(options)
+            .then(function (response) {
+              response.data.value[0].thumbnailUrl
+                ? (recipe.image = response.data.value[0].thumbnailUrl)
+                : (recipe.image = recipe.image);
+            })
+            .catch(function (error) {
+              console.error(error);
+            });
+        });
+
+        setMeals(apiData);
         setMeal(res.data.recipes[0]);
+        setLoaded(true);
+        console.log(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -55,10 +101,10 @@ const ChooseAMeal = (props) => {
     }
   };
 
-  return (
+  return meals.recipes && meals.recipes.length != 0 ? (
     <div className="container mt-3">
       <div className="row text-center">
-        <h1 className="cursive mt-5">Look Tasty?</h1>
+        <h1 className="cursive mt-3">Look Tasty?</h1>
       </div>
       <div className="row">
         <div
@@ -76,21 +122,12 @@ const ChooseAMeal = (props) => {
         </div>
         <div className="col-md-4">
           <div className="card">
-            <div
-              className="bg-image hover-overlay ripple"
-              data-mdb-ripple-color="light"
-            >
+            <div className="bg-image d-flex justify-content-center">
               {/* <img src="https://media.olivegarden.com/en_us/images/product/classic-chicken-alfredo-dinner-dpv-590x365.jpg" className="img-fluid"/> */}
               <img
                 src={meals.recipes && meals.recipes[index].image}
-                className="img-fluid"
+                height="420"
               />
-              <a href="#!">
-                <div
-                  className="mask"
-                  style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}
-                ></div>
-              </a>
             </div>
             <div className="card-body text-center">
               <h2>{meals.recipes && meals.recipes[index].title}</h2>
@@ -123,12 +160,29 @@ const ChooseAMeal = (props) => {
       <div className="m-4 text-center">
         <button
           className="btn btn-lg"
-          style={{ marginTop: "2px", backgroundColor: "#48BD8F" }}
+          style={{
+            marginTop: "2px",
+            backgroundColor: "#48BD8F",
+            fontWeight: "bold",
+          }}
         >
-          Add to Meal Plan
+          <span>Add to My Recipes</span>
         </button>
       </div>
     </div>
+  ) : (
+    loaded && (
+      // If No Search Query Found, Return 404 Message
+      <div className="text-center mt-5 pt-5">
+        <h1 className="cursive">
+          We were not able to find a recipe with your search.
+        </h1>
+        <a className="btn btn-dark" href="/dashboard">
+          <i className="fas fa-angle-left me-3"></i>
+          Go Back
+        </a>
+      </div>
+    )
   );
 };
 
