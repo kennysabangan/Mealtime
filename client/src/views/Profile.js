@@ -23,13 +23,14 @@ const Profile = () => {
                 console.log(userData.data);
             })
             .catch(err => console.log(err))
-
     }, []);
 
     return (
         <>
             <Navigation/>
-            <ProfileCard/>
+            { user &&
+            <ProfileCard user={user} />
+            }
         </>
     )
 }

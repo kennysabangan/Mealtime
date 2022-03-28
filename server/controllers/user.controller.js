@@ -57,6 +57,11 @@ module.exports = {
     logout: (req, res) => {
         res.clearCookie('usertoken');
         res.sendStatus(200);
+    },
+    updateUser: (req, res) => {
+        User.findOneAndUpdate({ _id: req.body.id }, {$set: req.body},  { new: true, runValidators: true })
+            .then(updatedUser => res.json(updatedUser))
+            .catch(err => res.status(400).json(err))
     }
 }
 

@@ -27,8 +27,21 @@ const UserSchema = new mongoose.Schema({
         minlength: [8, "Password must be 8 characters or longer."]
       }
     ,
-    allergies: [],
-    preferences: [],
+    allergies: {
+      type: String,
+      trim: true,
+      default: ""
+    },
+    restrictions: [],
+    age: {
+      type: Number,
+      default: 0
+    },
+    quote: {
+      type: String,
+      trim: true,
+      default: 'Let food be thy medicine.'
+    }
 }, { timestamps: true });
 
 

@@ -1,5 +1,6 @@
 import Navigation from "../components/Navigation";
 import Cookies from "js-cookie";
+import axios from 'axios';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
@@ -7,6 +8,7 @@ import RecipeGrid from "../components/RecipeGrid";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const [user, setUser] = useState();
   const [params, setParams] = useState({
     tags: [],
     number: 0,
@@ -20,27 +22,24 @@ const Dashboard = () => {
   // Checkbox Functionality for Search
   const onChangeHandler = (e) => {
     const newStateObject = { ...params };
-    const restriction = e.target.id + "IsChecked"; // ex: dairyFree + IsChecked = dairyFreeIsChecked
-    newStateObject[restriction] = e.target.checked; // newStateObject.dairyFreeIsChecked = <Whatever Checkbox is Right Now>
+    const newTags = []
 
-    // If 1) Box is Checked and 2) The tag doesn't exist in our array => add in the tag
-    if (newStateObject[restriction] && !newStateObject['tags'].includes(newStateObject[e.target.value])) {
-      newStateObject['tags'] = [...newStateObject['tags'], e.target.value]
-    }
+    var inputs = document.querySelectorAll("input[type='checkbox']");
+    inputs.forEach(input => {
+        const objectRestriction = input.id + "IsChecked";
+        input.checked ? newStateObject[objectRestriction] = true : newStateObject[objectRestriction] = false
+        input.checked && newTags.push(input.value)
+    })
 
-    // If 1) Box is NOT Checked and 2) The tag DOES exist in our array => remove / filter it out
-    if (!e.target.checked && newStateObject['tags'].includes(e.target.value)) {
-        newStateObject['tags'] = newStateObject['tags'].filter(tag => tag != e.target.value)
-    }
-
-    newStateObject['number'] = newStateObject['tags'].length; // Counts number of tags
+    newStateObject.tags = newTags;
+    newStateObject.number = newTags.length;
     setParams(newStateObject); // Sets New State Object
   };
 
   // Search Button Pass Props to GeneratedMeals
   const search = () => {
     // HAVE TO use a state object for useLocation to work in '/meals'
-    navigate('/meals', { state: { tags: params.tags } });
+    navigate('/meals', { state: { tags: params.tags, number: params.number } });
   }
 
   useEffect(() => {
@@ -48,6 +47,16 @@ const Dashboard = () => {
     if (!Cookies.get("usertoken")) {
       navigate("/");
     }
+
+    // Retrieve data about the user logged in
+    axios.get('http://localhost:8000/api/users/thisuser', { withCredentials: true })
+    .then(userData => {
+        setUser(userData.data)
+        console.log(userData.data);
+    })
+
+    .catch(err => console.log(err))
+
 
     // If user JUST logs in: success! TODO: ONLY TOAST WHEN FIRST LOGGED IN
     toast.success("You have successfully logged in!");
@@ -68,6 +77,7 @@ const Dashboard = () => {
                     <div className="form-check form-check-inline">
                         <input
                             className="form-check-input"
+                            checked={!!user && user.restrictions.includes('dairy free')}
                             onChange={onChangeHandler}
                             type="checkbox"
                             id="dairyFree"
@@ -80,6 +90,7 @@ const Dashboard = () => {
                     <div className="form-check form-check-inline">
                         <input
                             className="form-check-input"
+                            checked={!!user && user.restrictions.includes('vegan')}
                             onChange={onChangeHandler}
                             type="checkbox"
                             id="vegan"
@@ -92,6 +103,7 @@ const Dashboard = () => {
                     <div className="form-check form-check-inline">
                         <input
                             className="form-check-input"
+                            checked={!!user && user.restrictions.includes('grain free')}
                             onChange={onChangeHandler}
                             type="checkbox"
                             id="grainFree"
@@ -104,6 +116,7 @@ const Dashboard = () => {
                     <div className="form-check form-check-inline">
                         <input
                             className="form-check-input"
+                            checked={!!user && user.restrictions.includes('keto')}
                             onChange={onChangeHandler}
                             type="checkbox"
                             id="keto"
@@ -116,6 +129,7 @@ const Dashboard = () => {
                     <div className="form-check form-check-inline">
                         <input
                             className="form-check-input"
+                            checked={!!user && user.restrictions.includes('whole30')}
                             onChange={onChangeHandler}
                             type="checkbox"
                             id="whole30"
