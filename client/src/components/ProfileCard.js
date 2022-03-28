@@ -23,7 +23,7 @@ const ProfileCard = (props) => {
         whole30IsChecked: user.restrictions.includes('whole30'),
       });
 
-    const onChangeHandler = (e) => {
+    const onChangeHandler = () => {
         const newStateObject = { ...params };
         const newTags = []
 
@@ -36,12 +36,13 @@ const ProfileCard = (props) => {
 
         newStateObject.tags = newTags;
         setParams(newStateObject);
-
       };
 
     const saveHandler = () => {
+        onChangeHandler();
         axios.put('http://localhost:8000/api/users/update',
-            { id: user._id , firstName, lastName, email, age, allergies, quote, restrictions, restrictions: params.tags })
+            { id: user._id , firstName, lastName, email, age, allergies, quote, restrictions, restrictions: params.tags },
+            { withCredentials: true })
                 .then(user => {
                     setFirstName(user.data.firstName);
                     setLastName(user.data.lastName);
@@ -56,11 +57,7 @@ const ProfileCard = (props) => {
     }
 
     const cancelHandler = () => {
-        setEmail(user.email);
-        setAge(user.age);
-        setAllergies(user.allergies);
-        setRestrictions(user.restrictions);
-        setEdit(!edit);
+        window.location.reload(false);
     }
 
     return (
