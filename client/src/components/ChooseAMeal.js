@@ -142,7 +142,7 @@ const ChooseAMeal = (props) => {
     </div>
     : loaded &&
     // If No Search Query Found, Return 404 Message
-    <div className="text-center mt-5 pt-5">
+    <div className="text-center" style={{ paddingTop: "30vh"}}>
       <h1 className="cursive">We were not able to find a recipe with your search.</h1>
       <a className="btn btn-dark" href="/dashboard">
         <i className="fas fa-angle-left me-3"></i>
