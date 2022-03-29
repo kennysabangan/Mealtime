@@ -5,7 +5,9 @@ const AddRecipe = () => {
     return (
     <div>
         <Navigation />
+        <div className="profile-background">
         <RecipeForm />
+        </div>
     </div>
     );
 };
