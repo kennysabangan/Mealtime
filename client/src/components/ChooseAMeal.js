@@ -100,12 +100,12 @@ const ChooseAMeal = (props) => {
     meals.recipes && meals.recipes.length != 0 ?
     <div className="container mt-3">
       <div className="row text-center d-flex justify-content-center align-items-center">
-          <h1 className="tasty cursive mt-3" style={{ width: 413 }}>Look Tasty?</h1>
+          <h1 className="tasty cursive mt-3 rounded" style={{ width: 415 }}>Look Tasty?</h1>
       </div>
       <div className="row" >
         <div onClick={handlePrevious} className="col-md-4 d-flex align-items-center d-flex justify-content-start">
-        <button className={`meal-btn d-flex gap-3 align-items-center justify-content-center h-10 ${meals.recipes && index == 0 ? 'disabled' : null}`}>
-            <i className="fas fa-angle-left mb-2 pb-1"></i>
+        <button className={`meal-btn d-flex gap-3 align-items-center justify-content-center pt-3 ${meals.recipes && index == 0 ? 'disabled' : null}`}>
+            <i className="fas fa-angle-left mb-2 pb-1 "></i>
             <h1 className="cursive">Previous</h1>
           </button>
         </div>
@@ -125,7 +125,7 @@ const ChooseAMeal = (props) => {
           </div>
         </div>
         <div className="col-md-4 d-flex align-items-center justify-content-end" onClick={handleNext}>
-          <button className={`meal-btn d-flex gap-3 align-items-center justify-content-center h-10 ${meals.recipes && index == meals.recipes.length - 1 ? 'disabled' : null}`}>
+          <button className={`meal-btn d-flex gap-3 align-items-center justify-content-center pt-3 ${meals.recipes && index == meals.recipes.length - 1 ? 'disabled' : null}`}>
             <h1 className="cursive">Next</h1>
             <i className="fas fa-angle-right mb-2 pb-1"></i>
           </button>
