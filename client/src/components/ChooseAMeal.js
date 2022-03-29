@@ -24,7 +24,7 @@ const ChooseAMeal = (props) => {
               "X-RapidAPI-Host":
                 "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
               "X-RapidAPI-Key":
-                "0f84236229msh09b7a39c03b9eafp13e306jsnb8eba2675d6a",
+                "9fc53f2c2fmsh8633a9448fc45adp1d4bd0jsn4d61359145cd",
             },
           };
         } else {

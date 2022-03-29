@@ -100,6 +100,7 @@ const Dashboard = () => {
                 <p className="px-2">Search for your next meal below!</p>
               </div>
               {/* Restrictions div for the api call */}
+<<<<<<< HEAD
               <div className="restrictions">
                 <p className="px-2">Restrictions:</p>
                 <div className="form-check form-check-inline ms-2">
@@ -171,6 +172,92 @@ const Dashboard = () => {
                 <div
                   className="input-group rounded d-flex align-items-center pb-2 mt-1"
                   style={{ width: "26vw" }}
+=======
+                <div className="restrictions">
+                    <p className="px-2">Restrictions:</p>
+                    <div className="form-check form-check-inline ms-2">
+                        <input
+                            className="form-check-input"
+                            checked={params.dairyFreeIsChecked}
+                            onChange={onChangeHandler}
+                            type="checkbox"
+                            id="dairyFree"
+                            value="dairy free"
+                        />
+                        <label className="form-check-label" htmlFor="dairyFree">
+                            Dairy Free
+                        </label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                        <input
+                            className="form-check-input"
+                            checked={params.veganIsChecked}
+                            onChange={onChangeHandler}
+                            type="checkbox"
+                            id="vegan"
+                            value="vegan"
+                        />
+                        <label className="form-check-label" htmlFor="vegan">
+                            Vegan
+                        </label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                        <input
+                            className="form-check-input"
+                            checked={params.grainFreeIsChecked}
+                            onChange={onChangeHandler}
+                            type="checkbox"
+                            id="grainFree"
+                            value="grain free"
+                        />
+                        <label className="form-check-label" htmlFor="grainFree">
+                            Grain Free
+                        </label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                        <input
+                            className="form-check-input"
+                            checked={params.ketoIsChecked}
+                            onChange={onChangeHandler}
+                            type="checkbox"
+                            id="keto"
+                            value="keto"
+                        />
+                        <label className="form-check-label" htmlFor="keto">
+                            Keto
+                        </label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                        <input
+                            className="form-check-input"
+                            checked={params.whole30IsChecked}
+                            onChange={onChangeHandler}
+                            type="checkbox"
+                            id="whole30"
+                            value="whole30"
+                        />
+                        <label className="form-check-label" htmlFor="whole30">
+                            Whole30
+                        </label>
+                    </div>
+          {/* Search bar/btn htmlFor api call */}
+          <div className="input-group rounded d-flex align-items-center pb-2 mt-1" style={{ maxWidth: "20vw" }}>
+            <input
+              type="search"
+              className="form-control rounded ms-2"
+              style={{ minWidth: "10vw" }}
+              placeholder="Search"
+              aria-label="Search"
+              aria-describedby="search-addon"
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+            />
+            <span className="input-group-text border-0 mb-1 ms-2" id="search-addon">
+                <button
+                    className="btn btn-primary"
+                    onClick={searchHandler}
+                    style={{ marginTop: "2px", marginRight: "-10px" }}
+>>>>>>> bc0b3d5fbb2f08b7d3697f47020f02c53b5024c1
                 >
                   <input
                     type="search"
@@ -232,10 +319,21 @@ const Dashboard = () => {
           </div>
           <hr />
 
+<<<<<<< HEAD
           <div className="container-dashboard row">
             <div className="recipe-grid px-3">
               <h2 className="my-4">My Recipe Book:</h2>
               <RecipeGrid />
+=======
+            <div className="card-body d-flex flex-column justify-content-center">
+              <h2 style={{ marginTop: "-5px" }}>Most Favorited<i className="fas fa-utensils ms-2"></i></h2>
+              <h5 className="card-title" >Smoked Salmon Eggs Benedict With Lemon Dill Hollandaise</h5>
+              <p className="card-text">Rich and creamy eggs Benedict is a brunch classic for a good reason, brunch or not!</p>
+              <button className="btn btn-primary" style={{ marginBottom: "-10px", width: "12rem" }}>
+                <i className="fas fa-plus me-2"></i>
+                 Add to My Recipes
+              </button>
+>>>>>>> bc0b3d5fbb2f08b7d3697f47020f02c53b5024c1
             </div>
           </div>
         </div>
