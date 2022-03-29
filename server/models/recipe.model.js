@@ -12,7 +12,7 @@ const RecipeSchema = new mongoose.Schema(
     // },
     // ingredients: [],
     // instructions: [],
-    recipeObject: {},
+    recipes: [],
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

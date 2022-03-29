@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ChooseAMeal = (props) => {
   const { tags } = props;
@@ -8,6 +9,7 @@ const ChooseAMeal = (props) => {
   const [meal, setMeal] = useState({});
   const [loaded, setLoaded] = useState(false);
   const joinedTags = tags.join(", ");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getMeals = async () => {
@@ -22,7 +24,7 @@ const ChooseAMeal = (props) => {
               "X-RapidAPI-Host":
                 "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
               "X-RapidAPI-Key":
-                "9fc53f2c2fmsh8633a9448fc45adp1d4bd0jsn4d61359145cd",
+                "0f84236229msh09b7a39c03b9eafp13e306jsnb8eba2675d6a",
             },
           };
         } else {
@@ -53,7 +55,7 @@ const ChooseAMeal = (props) => {
             headers: {
               "X-RapidAPI-Host": "bing-image-search1.p.rapidapi.com",
               "X-RapidAPI-Key":
-                "9fc53f2c2fmsh8633a9448fc45adp1d4bd0jsn4d61359145cd",
+                "0f84236229msh09b7a39c03b9eafp13e306jsnb8eba2675d6a",
             },
           };
           axios
@@ -99,6 +101,26 @@ const ChooseAMeal = (props) => {
       setMeal(tempMeal);
       setIndex(tempIndex);
     }
+  };
+
+  const handleAddMyRecipes = () => {
+    axios
+      .post(
+        "http://localhost:8000/api/recipe",
+        {
+          recipes: meal,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        navigate("/dashboard");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return meals.recipes && meals.recipes.length != 0 ? (
@@ -159,6 +181,7 @@ const ChooseAMeal = (props) => {
       </div>
       <div className="m-4 text-center">
         <button
+          onClick={handleAddMyRecipes}
           className="btn btn-lg"
           style={{
             marginTop: "2px",
