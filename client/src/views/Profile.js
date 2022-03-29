@@ -29,7 +29,7 @@ const Profile = () => {
 
   return (
     <>
-      {user && <Navigation user={user} />}
+      <Navigation />
       {user && <ProfileCard user={user} />}
     </>
   );
