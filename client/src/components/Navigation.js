@@ -34,6 +34,9 @@ const Navigation = () => {
                     <li className="nav-item px-2">
                         <a className="nav-link" href="/meals">Find Random Meal</a>
                     </li>
+                    <li className="nav-item px-2">
+                        <a className="nav-link" href="/addrecipe">Add Recipe</a>
+                    </li>
                 </ul>
 
                 {/* <!-- Right links --> */}
