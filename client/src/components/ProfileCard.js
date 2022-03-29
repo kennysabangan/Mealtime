@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const ProfileCard = (props) => {
 
@@ -15,11 +15,17 @@ const ProfileCard = (props) => {
     const [ allergies, setAllergies ] = useState(user.allergies);
     const [ restrictions, setRestrictions ] = useState(user.restrictions);
 
+    useEffect(()=> {
+        if(url){
+            saveHandler()
+        }
+    },[url])
+
     const uploadPic = () => {
         const data = new FormData()
         data.append("file",image)
-        fetch("https://api.cloudinary.com/v1_1/cnq/image/upload",{
-            method:"post",
+        fetch("http://localhost:8000/api/users/update",{
+            method:"put",
             body: data
         })
         .then(res=>res.json())
@@ -35,7 +41,7 @@ const ProfileCard = (props) => {
         if(image) {
             uploadPic()
         } else {
-            cancelHandler()
+            saveHandler()
         }
     }
 
@@ -65,9 +71,11 @@ const ProfileCard = (props) => {
     };
 
     const saveHandler = () => {
+        uploadPic();
+        postPic();
         onChangeHandler();
         axios.put('http://localhost:8000/api/users/update',
-            { id: user._id , firstName, lastName, email, age, allergies, quote, restrictions, restrictions: params.tags },
+            { id: user._id , firstName, lastName, email, age, allergies, quote, restrictions, restrictions, pic: params.tags },
             { withCredentials: true })
                 .then(user => {
                     setFirstName(user.data.firstName);
@@ -77,6 +85,7 @@ const ProfileCard = (props) => {
                     setAge(user.data.age);
                     setAllergies(user.data.allergies);
                     setRestrictions(user.data.restrictions);
+                    setImage(user.data.pic);
                     setEdit(!edit);
                 })
                 .catch(err => console.log(err))
@@ -98,11 +107,18 @@ const ProfileCard = (props) => {
                         <div className="col-md-4 gradient-custom text-center text-white" style={{ borderTopLeftRadius: ".5rem", borderBottomLeftRadius: ".5rem" }}>
                         
                         { edit ? 
-                            <div className="btn #64b5f6 blue darken-1">
+                            <div className='img-edit'>
+                                <img
+                                src={require('../static/no-profile.png')}
+                                alt="Avatar"
+                                className="img-fluid my-5"
+                                style={{ width: "80px" }}
+                                />
                                 <input type="file" onChange={(e)=>setImage(e.target.files[0])} />
+                                {/* <button className="btn waves-effect waves-light blue darken-1" onClick={()=>postPic()}>Add Profile Pic</button> */}
                             </div>:
                             <>
-                            
+                            {/* <img>{ pic }</img> */}
                             </>
                         }
 
