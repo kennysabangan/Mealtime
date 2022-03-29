@@ -7,6 +7,8 @@ import Dashboard from "./views/Dashboard";
 import GeneratedMeals from "./views/GeneratedMeals";
 import Profile from "./views/Profile";
 import OneRecipe from "./views/OneRecipe";
+import AddRecipe from "./views/AddRecipe";
+
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
         <Route path="/meals" element={<GeneratedMeals />} />
         <Route path="/onerecipe" element={<OneRecipe />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/addrecipe" element={<AddRecipe />} />
       </Routes>
       <Toaster />
     </BrowserRouter>
