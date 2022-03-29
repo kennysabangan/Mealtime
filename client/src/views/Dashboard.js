@@ -81,19 +81,20 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div>
+    <div className="dashboard-background">
       <Navigation />
-      <div className="dashboard-background">
+      <div>
         <div className="container">
-        <div className="container-dashboard">
-          <div className="pt-4 mt-2">
+        <div className="container-dashboard px-4 pb-2 row mt-3 py-1 pb-2">
+        <div className="col-md-6">
+          <div className="pt-4">
             <h2>Feeling Hungry?</h2>
-            <p>Search for your next meal below!</p>
+            <p className="px-2">Search for your next meal below!</p>
           </div>
               {/* Restrictions div for the api call */}
                 <div className="restrictions">
-                    <p>Restrictions:</p>
-                    <div className="form-check form-check-inline">
+                    <p className="px-2">Restrictions:</p>
+                    <div className="form-check form-check-inline ms-2">
                         <input
                             className="form-check-input"
                             checked={params.dairyFreeIsChecked}
@@ -159,24 +160,22 @@ const Dashboard = () => {
                         </label>
                     </div>
           {/* Search bar/btn htmlFor api call */}
-          <div
-            className="input-group rounded d-flex align-items-center pb-2"
-            style={{ width: "26vw" }}
-          >
+          <div className="input-group rounded d-flex align-items-center pb-2 mt-1" style={{ maxWidth: "20vw" }}>
             <input
               type="search"
-              className="form-control rounded"
+              className="form-control rounded ms-2"
+              style={{ minWidth: "10vw" }}
               placeholder="Search"
               aria-label="Search"
               aria-describedby="search-addon"
               value={query}
               onChange={e => setQuery(e.target.value)}
             />
-            <span className="input-group-text border-0 mb-1" id="search-addon">
+            <span className="input-group-text border-0 mb-1 ms-2" id="search-addon">
                 <button
                     className="btn btn-primary"
                     onClick={searchHandler}
-                    style={{ marginTop: "2px" }}
+                    style={{ marginTop: "2px", marginRight: "-10px" }}
                 >
                     <i className="fas fa-search"></i>
                     <span className="ms-2">Search</span>
@@ -185,11 +184,29 @@ const Dashboard = () => {
             </div>
           </div>
       </div>
+        <div className="col-md-6 py-1">
+          <section className="d-flex align-items-center h-100">
+            <div className="p-2 mt-2 featured-img">
+              <img src="https://tse1.mm.bing.net/th?id=OIP.RzUzTGseSfB29CasSmPn6QHaHa&pid=Api" className="img-fluid shadow-1-strong" width="400" alt="placeholder image with fruits" />
+            </div>
+
+            <div className="card-body d-flex flex-column justify-content-center">
+              <h2 style={{ marginTop: "-5px" }}>Most Favorited<i className="fas fa-utensils ms-2"></i></h2>
+              <h5 className="card-title" >Smoked Salmon Eggs Benedict With Lemon Dill Hollandaise</h5>
+              <p className="card-text">Rich and creamy eggs Benedict is a brunch classic for a good reason, brunch or not!</p>
+              <button className="btn btn-primary" style={{ marginBottom: "-10px", width: "12rem" }}>
+                <i className="fas fa-plus me-2"></i>
+                 Add to My Recipes
+              </button>
+            </div>
+          </section>
+        </div>
+    </div>
       <hr />
-      
-      <div className="container-dashboard">
-        <div className="recipe-grid">
-        <h2 className="my-4">My Recipe Book:</h2>
+
+      <div className="container-dashboard row">
+        <div className="recipe-grid px-3 pb-5">
+        <h2 className="my-4 ms-2">My Recipe Book:</h2>
         <RecipeGrid />
         </div>
       </div>
