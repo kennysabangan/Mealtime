@@ -187,16 +187,15 @@ const Dashboard = () => {
         <div className="col-md-6 py-1">
           <section className="d-flex align-items-center h-100">
             <div className="p-2 mt-2 featured-img">
-              <img src="https://tse1.mm.bing.net/th?id=OIP.RzUzTGseSfB29CasSmPn6QHaHa&pid=Api" className="img-fluid shadow-1-strong" width="400" alt="placeholder image with fruits" />
+              <img src="https://tse1.mm.bing.net/th?id=OIP.RzUzTGseSfB29CasSmPn6QHaHa&pid=Api" className="img-fluid shadow-1-strong" width="400" alt="image of eggs benedict" />
             </div>
-
             <div className="card-body d-flex flex-column justify-content-center">
-              <h2 style={{ marginTop: "-5px" }}>Most Favorited<i className="fas fa-utensils ms-2"></i></h2>
+              <h2 style={{ marginTop: "-5px" }}>Popular Favorites <i className="fas fa-utensils ms-2"></i> </h2>
               <h5 className="card-title" >Smoked Salmon Eggs Benedict With Lemon Dill Hollandaise</h5>
               <p className="card-text">Rich and creamy eggs Benedict is a brunch classic for a good reason, brunch or not!</p>
               <button className="btn btn-primary" style={{ marginBottom: "-10px", width: "12rem" }}>
                 <i className="fas fa-plus me-2"></i>
-                 Add to My Recipes
+                Add to My Recipes
               </button>
             </div>
           </section>

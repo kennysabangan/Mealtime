@@ -118,17 +118,12 @@ const ProfileCard = (props) => {
                                 {/* <button className="btn waves-effect waves-light blue darken-1" onClick={()=>postPic()}>Add Profile Pic</button> */}
                             </div>:
                             <>
-                            {/* <img>{ pic }</img> */}
+                            <img src={ user.pic } />
                             </>
                         }
 
                         { !edit &&
-                            <img
-                            src={require('../static/no-profile.png')}
-                            alt="Avatar"
-                            className="img-fluid my-5"
-                            style={{ width: "80px" }}
-                            />
+                            <img src={ user.pic } />
                         }
                         
                         { edit ?
