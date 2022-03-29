@@ -98,9 +98,9 @@ const ChooseAMeal = (props) => {
 
   return (
     meals.recipes && meals.recipes.length != 0 ?
-    <div className="container mt-3">
+    <div className="container">
       <div className="row text-center d-flex justify-content-center align-items-center">
-          <h1 className="tasty cursive mt-3 rounded" style={{ width: 415 }}>Look Tasty?</h1>
+          <h1 className="tasty cursive mt-5 rounded" style={{ width: 415 }}>Look Tasty?</h1>
       </div>
       <div className="row" >
         <div onClick={handlePrevious} className="col-md-4 d-flex align-items-center d-flex justify-content-start">
