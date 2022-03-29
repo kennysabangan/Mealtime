@@ -24,7 +24,7 @@ const ChooseAMeal = (props) => {
               "X-RapidAPI-Host":
                 "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
               "X-RapidAPI-Key":
-                "0f84236229msh09b7a39c03b9eafp13e306jsnb8eba2675d6a",
+                "9fc53f2c2fmsh8633a9448fc45adp1d4bd0jsn4d61359145cd",
             },
           };
         } else {
@@ -37,7 +37,7 @@ const ChooseAMeal = (props) => {
               "X-RapidAPI-Host":
                 "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
               "X-RapidAPI-Key":
-                "9fc53f2c2fmsh8633a9448fc45adp1d4bd0jsn4d61359145cd",
+                "0f84236229msh09b7a39c03b9eafp13e306jsnb8eba2675d6a",
             },
           };
         }
@@ -103,11 +103,32 @@ const ChooseAMeal = (props) => {
     }
   };
 
-  return (
-    meals.recipes && meals.recipes.length != 0 ?
+  const handleAddRecipe = () => {
+    axios
+      .post(
+        "http://localhost:8000/api/recipe",
+        {
+          recipes: meal,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        navigate("/dashboard");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  return meals.recipes && meals.recipes.length != 0 ? (
     <div className="container">
       <div className="row text-center d-flex justify-content-center align-items-center">
-          <h1 className="tasty cursive mt-5 rounded" style={{ width: 415 }}>Look Tasty?</h1>
+        <h1 className="tasty cursive mt-5 rounded" style={{ width: 415 }}>
+          Look Tasty?
+        </h1>
       </div>
       <div className="row">
         <div
@@ -162,7 +183,7 @@ const ChooseAMeal = (props) => {
       </div>
       <div className="m-4 text-center">
         <button
-          onClick={handleAddMyRecipes}
+          onClick={handleAddRecipe}
           className="btn btn-lg"
           style={{
             marginTop: "2px",
