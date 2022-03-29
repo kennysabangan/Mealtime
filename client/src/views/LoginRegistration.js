@@ -20,6 +20,10 @@ const LoginRegistration = () => {
         if (Cookies.get('usertoken')) {
             navigate('/dashboard');
         }
+
+        document.querySelectorAll('.form-outline').forEach((formOutline) => {
+            new mdb.Input(formOutline).init();
+        });
     }, [])
 
     const login = (e) => {
@@ -45,12 +49,6 @@ const LoginRegistration = () => {
             .then(() => navigate("/dashboard"))
             .catch(err => setErrors(err.response.data.errors))
     }
-
-    useEffect(() => {
-        document.querySelectorAll('.form-outline').forEach((formOutline) => {
-            new mdb.Input(formOutline).init();
-        });
-    }, [])
 
     return (
         <div className="login-registration">

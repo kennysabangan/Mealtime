@@ -93,7 +93,7 @@ const Dashboard = () => {
       <Navigation />
       <div>
         <div className="container">
-          <div className="container-dashboard px-4 pb-2 row mt-3">
+          <div className="container-dashboard px-4 pb-2 row mt-3 py-1 pb-2">
             <div className="col-md-6">
               <div className="pt-4">
                 <h2>Feeling Hungry?</h2>

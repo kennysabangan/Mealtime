@@ -103,32 +103,11 @@ const ChooseAMeal = (props) => {
     }
   };
 
-  const handleAddMyRecipes = () => {
-    axios
-      .post(
-        "http://localhost:8000/api/recipe",
-        {
-          recipes: meal,
-        },
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-        navigate("/dashboard");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  return meals.recipes && meals.recipes.length != 0 ? (
-    <div className="container mt-3">
+  return (
+    meals.recipes && meals.recipes.length != 0 ?
+    <div className="container">
       <div className="row text-center d-flex justify-content-center align-items-center">
-        <h1 className="tasty cursive mt-3 rounded" style={{ width: 415 }}>
-          Look Tasty?
-        </h1>
+          <h1 className="tasty cursive mt-5 rounded" style={{ width: 415 }}>Look Tasty?</h1>
       </div>
       <div className="row">
         <div
