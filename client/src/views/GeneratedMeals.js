@@ -16,7 +16,9 @@ const GeneratedMeals = () => {
   return (
     <div>
       <Navigation />
+      <div className="profile-background">
       <ChooseAMeal tags={tags} />
+      </div>
     </div>
   );
 };

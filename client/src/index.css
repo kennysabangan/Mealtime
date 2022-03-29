@@ -86,12 +86,8 @@ h1.cursive {
   background-color: white;
 }
 
-.container {
-  background-color: white;
-}
-
-.container-sides {
-  background-image: url('../public/Food-Bg.jpeg');
+.profile-background {
+  background-image: url('../public/ingredients.webp');
   background-repeat: no-repeat;
   height: 100vh;
   width: 100vw;
@@ -102,4 +98,35 @@ h1.cursive {
 .recipe-grid {
   padding-top: 2px;
   padding-bottom: 25px;
+}
+
+.container-dashboard {
+  background-color: rgb(251,251,251);
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+.tasty {
+  background-color: rgb(251,251,251);
+  max-width: 416px;
+}
+
+.dashboard-background {
+  background-image: url('../public/dashboard.webp');
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-position: center;
+}
+
+.featured-img {
+  border: 2px solid rgb(186,118,72, 0.40);
+  border-radius: 5px;
+  transform: scaleX(0.85);
+}
+
+.featured-img > img {
+  transform: scaleX(1.30);
+  border-radius: 5px;
 }
