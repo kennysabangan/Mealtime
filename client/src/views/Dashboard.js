@@ -83,7 +83,9 @@ const Dashboard = () => {
   return (
     <div>
       <Navigation />
+      <div className="dashboard-background">
         <div className="container">
+        <div className="container-dashboard">
           <div className="pt-4 mt-2">
             <h2>Feeling Hungry?</h2>
             <p>Search for your next meal below!</p>
@@ -182,11 +184,16 @@ const Dashboard = () => {
             </span>
             </div>
           </div>
+      </div>
       <hr />
+      
+      <div className="container-dashboard">
         <div className="recipe-grid">
         <h2 className="my-4">My Recipe Book:</h2>
         <RecipeGrid />
         </div>
+      </div>
+      </div>
       </div>
       </div>
   );

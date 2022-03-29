@@ -15,6 +15,30 @@ const ProfileCard = (props) => {
     const [ allergies, setAllergies ] = useState(user.allergies);
     const [ restrictions, setRestrictions ] = useState(user.restrictions);
 
+    const uploadPic = () => {
+        const data = new FormData()
+        data.append("file",image)
+        fetch("https://api.cloudinary.com/v1_1/cnq/image/upload",{
+            method:"post",
+            body: data
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            setUrl(data.url)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    }
+
+    const postPic = () => {
+        if(image) {
+            uploadPic()
+        } else {
+            cancelHandler()
+        }
+    }
+
     const [params, setParams] = useState({
         tags: [],
         number: 0,
@@ -72,12 +96,25 @@ const ProfileCard = (props) => {
                     <div className="card mb-3" style={{ borderRadius: ".5rem" }}>
                     <div className="row g-0">
                         <div className="col-md-4 gradient-custom text-center text-white" style={{ borderTopLeftRadius: ".5rem", borderBottomLeftRadius: ".5rem" }}>
-                        <img
+                        
+                        { edit ? 
+                            <div className="btn #64b5f6 blue darken-1">
+                                <input type="file" onChange={(e)=>setImage(e.target.files[0])} />
+                            </div>:
+                            <>
+                            
+                            </>
+                        }
+
+                        { !edit &&
+                            <img
                             src={require('../static/no-profile.png')}
                             alt="Avatar"
                             className="img-fluid my-5"
                             style={{ width: "80px" }}
-                        />
+                            />
+                        }
+                        
                         { edit ?
                         <div>
                             <div className="d-flex justify-content-center gap-3 px-4 mb-1">
@@ -93,6 +130,7 @@ const ProfileCard = (props) => {
                             <p>"{ quote }"</p>
                         </>
                         }
+
                         { !edit &&
                             <button className="btn btn-dark" onClick={() => setEdit(!edit)}>
                                 <i className="far fa-edit me-1"></i>
