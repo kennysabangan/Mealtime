@@ -160,13 +160,11 @@ const Dashboard = () => {
                         </label>
                     </div>
           {/* Search bar/btn htmlFor api call */}
-          <div
-            className="input-group rounded d-flex align-items-center pb-2 mt-1"
-            style={{ width: "26vw" }}
-          >
+          <div className="input-group rounded d-flex align-items-center pb-2 mt-1" style={{ maxWidth: "20vw" }}>
             <input
               type="search"
               className="form-control rounded ms-2"
+              style={{ minWidth: "10vw" }}
               placeholder="Search"
               aria-label="Search"
               aria-describedby="search-addon"
@@ -193,8 +191,8 @@ const Dashboard = () => {
             </div>
 
             <div className="card-body d-flex flex-column justify-content-center">
-              <h5>Most Favorited<i className="fas fa-utensils ms-2"></i></h5>
-              <h4 className="card-title">Smoked Salmon Eggs Benedict With Lemon Dill Hollandaise</h4>
+              <h2 style={{ marginTop: "-5px" }}>Most Favorited<i className="fas fa-utensils ms-2"></i></h2>
+              <h5 className="card-title" >Smoked Salmon Eggs Benedict With Lemon Dill Hollandaise</h5>
               <p className="card-text">Rich and creamy eggs Benedict is a brunch classic for a good reason, brunch or not!</p>
               <button className="btn btn-primary" style={{ marginBottom: "-10px", width: "12rem" }}>
                 <i className="fas fa-plus me-2"></i>
