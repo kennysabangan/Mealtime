@@ -127,7 +127,7 @@ const ChooseAMeal = (props) => {
           var options = {
             method: "GET",
             url: "https://bing-image-search1.p.rapidapi.com/images/search",
-            params: { q: `${recipe.title} recipe`, count: "1", offset: "1" },
+            params: { q: `${recipe.title} recipe`, count: "3", offset: "1" },
             headers: {
               "X-RapidAPI-Host": "bing-image-search1.p.rapidapi.com",
               "X-RapidAPI-Key":
