@@ -66,6 +66,7 @@ const OneMeal = () => {
         </MDBCol>
       </MDBRow>
       <hr />
+      { meal.ingredients.length != 0 &&
       <MDBRow className="d-flex justify-content-center">
         <MDBCol md="9" className="col-example">
         <h2 className="recipe-header" style={{ textDecoration: "underline" }}>
@@ -81,7 +82,9 @@ const OneMeal = () => {
           })}
           </MDBCol>
       </MDBRow>
-      <hr />
+      }
+
+      { meal.instructions.length > 1 &&
       <MDBRow className="d-flex justify-content-center">
         <MDBCol md="9" className="col-example mb-5">
           <h2 className="recipe-header" style={{ textDecoration: "underline" }}>
@@ -99,6 +102,7 @@ const OneMeal = () => {
             </ol>
           </MDBCol>
       </MDBRow>
+      }
     </MDBContainer>
   );
 };
