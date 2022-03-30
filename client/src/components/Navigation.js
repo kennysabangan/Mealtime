@@ -29,7 +29,6 @@ const Navigation = (props) => {
                     let srcValue = "data:image/png;base64,"+base64ImageString
                     setPic(srcValue)
                 })
-                .catch(err => console.log(err))
             })
     }, [])
 

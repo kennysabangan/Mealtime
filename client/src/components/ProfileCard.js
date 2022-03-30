@@ -104,7 +104,6 @@ const ProfileCard = (props) => {
     const cancelHandler = () => {
         window.location.reload(false);
     }
-    console.log(user);
 
     return (
         <section className="vh-100" style={{ backgroundColor: "#f4f5f7" }}>
