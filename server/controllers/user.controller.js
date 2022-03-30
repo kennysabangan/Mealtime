@@ -82,5 +82,15 @@ module.exports = {
     }, { new: true })
     .then((updatedUser) => res.json(updatedUser))
     .catch((err) => res.status(400).json(err));
+  },
+  getRecipes: (req, res) => {
+    const data = req.cookies.usertoken;
+    const decodedData = jwt.decode(data);
+    User.findOne({ _id: decodedData.id }).populate('recipes.recipe')
+      .then((user) => {
+        console.log(user.recipes);
+        res.json(user.recipes)
+      })
+      .catch((err) => res.json(err));
   }
 };

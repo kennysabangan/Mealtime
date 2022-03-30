@@ -19,6 +19,7 @@ module.exports = (app) => {
     app.post('/api/users/login', UserController.login);
     app.get('/api/users/logout', UserController.logout);
     app.get('/api/users/thisuser', UserController.findThisUser);
+    app.get('/api/users/recipes', UserController.getRecipes);
     app.put('/api/users/update', UserController.updateUser);
     app.post('/api/users/pic', (req, res) => {
         const filepath = path.join(__dirname, '..', 'images', `${req.body.user['pic']}`)
