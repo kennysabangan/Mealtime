@@ -56,21 +56,21 @@ const OneMeal = (props) => {
         <h2 className="recipe-header" style={{ textDecoration: "underline" }}>
           Ingredients:
         </h2>
-        {meal.data &&
+        {/* {meal.data &&
           meal.data.ingredients.map((ingredient, index) => {
             return (
               <ul style={{ marginLeft: "20px" }}>
                 <li key={ingredient.id}>{ingredient.original}</li>
               </ul>
             );
-          })}
+          })} */}
       </MDBRow>
       <hr />
       <MDBRow>
         <h2 className="recipe-header" style={{ textDecoration: "underline" }}>
           Instructions:
         </h2>
-        {meal.data &&
+        {/* {meal.data &&
           meal.data.instructions[0].steps.map((step, index) => {
             return (
               <ol style={{ marginLeft: "20px" }}>
@@ -79,7 +79,7 @@ const OneMeal = (props) => {
                 </li>
               </ol>
             );
-          })}
+          })} */}
       </MDBRow>
     </MDBContainer>
   );
