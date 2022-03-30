@@ -4,8 +4,9 @@ import { Buffer } from 'buffer';
 import { useNavigate } from 'react-router-dom';
 import { MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem } from "mdbreact";
 import noProfile from '../static/no-profile.png'
+import favIcon from '../static/food-favicon.png'
 
-const Navigation = (props) => {
+const Navigation = () => {
 
     const [ pic, setPic ] = useState("");
     const navigate = useNavigate();
@@ -42,7 +43,7 @@ const Navigation = (props) => {
                 {/* <!-- Navbar brand --> */}
                 <a className="navbar-brand me-2" href="/dashboard">
                 <img
-                    src="food-favicon.png"
+                    src={ favIcon }
                     height="30"
                     loading="lazy"
                 />

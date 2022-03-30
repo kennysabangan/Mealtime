@@ -1,6 +1,7 @@
 import React, { useState, UseEffect, useEffect } from "react";
 import axios from "axios";
 import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
+import { useParams } from "react-router-dom";
 
 const OneMeal = (props) => {
   const { id } = props; // id will be specific recipe id.
