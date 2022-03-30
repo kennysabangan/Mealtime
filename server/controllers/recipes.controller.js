@@ -3,7 +3,7 @@ const User = require("../models/user.model");
 
 module.exports = {
   getAllRecipes: (req, res) => {
-    Recipe.find()
+    Recipe.find({})
       .then((allRecipes) => {
         console.log(allRecipes);
         res.json(allRecipes);
@@ -19,7 +19,8 @@ module.exports = {
     newRecipeObject
       .save()
       .then((newRecipe) => {
-        User.findOneAndUpdate({ _id: req.jwtpayload.id }, { $push: { recipes: newRecipe } }, { new: true })
+        console.log(newRecipe);
+        User.findOneAndUpdate({ _id: req.jwtpayload.id }, { $push: { recipes: [{ recipe: newRecipe }] }}, { new: true })
           .then(displayNew => {
             res.json(displayNew)
             console.log(displayNew);

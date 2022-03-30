@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const recipeSchema = new mongoose.Schema({
-  product: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Recipe',
-  },
+  recipe: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Recipe',
+  }
 });
 
 const UserSchema = new mongoose.Schema(
