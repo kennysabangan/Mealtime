@@ -9,6 +9,9 @@ import RecipeGrid from "../components/RecipeGrid";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
+  const [featured, setFeatured] = useState();
+  const [loaded, setLoaded] = useState(false);
+  const [updated, setUpdated] = useState(false);
   const [params, setParams] = useState({
     tags: [],
     number: 0,
@@ -83,14 +86,53 @@ const Dashboard = () => {
       })
       .catch((err) => console.log(err));
 
-    // If user JUST logs in: success! TODO: ONLY TOAST WHEN FIRST LOGGED IN
+
+      // Retrieve Featured Item
+      var options = {
+        method: "GET",
+        url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random",
+        params: { number: "1" },
+        headers: {
+          "X-RapidAPI-Host":
+            "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+          "X-RapidAPI-Key":
+            "9fc53f2c2fmsh8633a9448fc45adp1d4bd0jsn4d61359145cd",
+        },
+      };
+        axios.request(options)
+          .then(featuredRecipe => {
+            console.log(featuredRecipe.data.recipes[0]);
+            setFeatured(featuredRecipe.data.recipes[0])
+            setLoaded(true);
+          })
+
+    // If user JUST logs in: Success!
     toast.success("You have successfully logged in!");
   }, []);
 
+  const handleAddRecipe = async () => {
+    try {
+      const res = await axios.post(
+        "http://localhost:8000/api/recipe",
+        {
+          recipeName: featured.title,
+          prepTime: featured.readyInMinutes,
+          servings: featured.servings,
+          image: featured.image,
+          ingredients: featured.extendedIngredients,
+          instructions: featured.analyzedInstructions[0],
+        }, { withCredentials: true }
+      );
+      console.log(res);
+      setUpdated(!updated)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="dashboard-background">
-      <Navigation />
-      {/* <div> */}
+      <Navigation updated={updated}/>
         <div className="container">
           <div className="container-dashboard px-4 pb-2 row mt-3 py-1 pb-2">
             <div className="col-md-6">
@@ -174,7 +216,6 @@ const Dashboard = () => {
                   <input
                     type="search"
                     className="form-control rounded ms-2"
-                    style={{ minWidth: "10vw" }}
                     placeholder="Search"
                     aria-label="Search"
                     aria-describedby="search-addon"
@@ -198,32 +239,33 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="col-md-6 py-1">
+            { loaded &&
               <section className="d-flex align-items-center h-100">
                 <div className="p-2 mt-2 featured-img">
                   <img
-                    src="https://tse1.mm.bing.net/th?id=OIP.RzUzTGseSfB29CasSmPn6QHaHa&pid=Api"
+                    src={featured.image}
                     className="img-fluid shadow-1-strong"
-                    width="400"
-                    alt="image of eggs benedict"
+                    width="500"
+                    alt="image of salmon"
                   />
                 </div>
                 <div className="card-body d-flex flex-column justify-content-center">
-                  <h2 style={{ marginTop: "-5px" }}>
-                    Popular Favorites{" "}
+                  <h2 style={{ marginTop: "-5px", marginLeft: "-4px" }}>
+                    Popular Favorite
                       <i
-                        className="fas fa-utensils"
+                        className="fas fa-utensils ms-2"
                         style={{ transform: "scale(0.60) translate(-4px,4px)" }}
                       ></i>
                   </h2>
                   <h5 className="card-title">
-                    Smoked Salmon Eggs Benedict With Lemon Dill Hollandaise
+                    {featured.title}
                   </h5>
                   <p className="card-text">
-                    Rich and creamy eggs Benedict is a brunch classic for a good
-                    reason, brunch or not!
+                    Fresh and new recipe favorited by the Coding Dojo community!
                   </p>
                   <button
                     className="btn btn-primary"
+                    onClick={handleAddRecipe}
                     style={{ marginBottom: "-10px", width: "12rem" }}
                   >
                     <i className="fas fa-plus me-2"></i>
@@ -231,6 +273,7 @@ const Dashboard = () => {
                   </button>
                 </div>
               </section>
+            }
             </div>
           </div>
           <hr />
@@ -238,12 +281,11 @@ const Dashboard = () => {
           <div className="container-dashboard row">
             <div className="recipe-grid px-3 pb-5">
               <h2 className="my-4 ms-2">My Recipe Book:</h2>
-              <RecipeGrid />
+              <RecipeGrid/>
             </div>
           </div>
         </div>
       </div>
-    // </div>
   );
 };
 
