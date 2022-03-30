@@ -66,7 +66,7 @@ const LoginRegistration = () => {
         },
         { withCredentials: true }
       )
-      .then(() => navigate("/dashboard"))
+      .then(() => { navigate("/dashboard"); toast.success("You have successfully logged in!");})
       .catch((err) => setErrors(err.response.data.errors));
   };
 

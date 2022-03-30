@@ -20,7 +20,7 @@ module.exports = (app) => {
     app.get('/api/users/logout', UserController.logout);
     app.get('/api/users/thisuser', UserController.findThisUser);
     app.get('/api/users/recipes', UserController.getRecipes);
-    app.get('/api/users/recipes/:id', UserController.removeRecipeFromBook)
+    app.delete('/api/users/recipes/:id', UserController.removeRecipeFromBook)
     app.put('/api/users/update', UserController.updateUser);
     app.post('/api/users/pic', (req, res) => {
         const filepath = path.join(__dirname, '..', 'images', `${req.body.user['pic']}`)

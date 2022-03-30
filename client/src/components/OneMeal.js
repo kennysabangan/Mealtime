@@ -1,12 +1,13 @@
 import React, { useState, UseEffect, useEffect } from "react";
 import axios from "axios";
 import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const OneMeal = () => {
   const { id } = useParams(); // id will be specific recipe id.
   const [meal, setMeal] = useState({});
   const [loaded, setLoaded] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getMeal = async () => {
@@ -22,8 +23,9 @@ const OneMeal = () => {
   }, []);
 
   const handleDeleteRecipe = () => {
-    axios.get(`http://localhost:8000/api/users/recipes/${id}`)
-      .then(res => console.log(res))
+    axios.delete(`http://localhost:8000/api/users/recipes/${id}`, { withCredentials: true })
+      .then(() => navigate('/dashboard'))
+      .catch(err => console.log(err));
   }
 
   return ( loaded &&

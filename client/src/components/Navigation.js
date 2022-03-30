@@ -14,7 +14,7 @@ const Navigation = () => {
     const logout = () => {
         axios.get('http://localhost:8000/api/users/logout', { withCredentials: true })
             .then(() => navigate('/'))
-            .catch(err => console.log(err))
+            // .catch(err => console.log(err))
     }
 
     useEffect(() => {

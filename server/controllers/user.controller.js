@@ -95,9 +95,11 @@ module.exports = {
   removeRecipeFromBook: (req, res) => {
     const data = req.cookies.usertoken;
     const decodedData = jwt.decode(data);
-    User.findOne({ _id: decodedData.id })
+    User.findOneAndUpdate(
+      { _id: decodedData.id },
+      { $pull: { recipes: { recipe: req.params.id } } },
+      { new: true, safe: true, multi: false })
     .then((user) => {
-      console.log(user);
       res.json(user)
     })
     .catch((err) => res.json(err));
