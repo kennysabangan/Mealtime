@@ -10,17 +10,6 @@ const OneMeal = (props) => {
       const res = await axios.get(
         "http://localhost:8000/api/recipe/624340f380719d1e0ecad17b"
       );
-      // console.log(res);
-      // console.log(res.data);
-      //console.log(res.data.recipes[0].extendedIngredients[0].original);
-      console.log(res.data.recipes[0].analyzedInstructions[0].steps[0].step);
-
-      // ingredients: console.log(res.data.recipes[0].extendedIngredients[0].original);
-      // image console.log(res.data.recipes[0].image);
-      // servings console.log(res.data.recipes[0].servings);
-      // preptime console.log(res.data.recipes[0].readyInMinutes);
-      // title console.log(res.data.recipes[0].title);
-      // instructions console.log(res.data.recipes[0].analyzedInstructions[0].steps);
     };
     getMeal();
   }, []);
