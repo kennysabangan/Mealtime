@@ -73,8 +73,9 @@ const Dashboard = () => {
         })
         newStateObject.tags = newTags;
         setParams(newStateObject);
-    })
-    .catch(err => console.log(err))
+
+       })
+      .catch(err => console.log(err))
 
     // If user JUST logs in: success! TODO: ONLY TOAST WHEN FIRST LOGGED IN
     toast.success("You have successfully logged in!");
