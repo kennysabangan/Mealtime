@@ -54,9 +54,8 @@ const RecipeGrid = () => {
             { recipes.map((item, idx) => (
             <MDBCard key={idx} className="m-2" style={{ width: "30%"}}>
                 <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay text-center'>
-                    <MDBCardImage src={item.recipe.image} height="225" />
-                    <a href='/onerecipe'>
-                        <div style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
+                    <a href={`/onerecipe/${item.recipe._id}`}>
+                        <MDBCardImage src={item.recipe.image} height="225" />
                     </a>
                 </MDBRipple>
                 <MDBCardBody>
