@@ -10,8 +10,8 @@ const GeneratedMeals = () => {
     var tags = [];
     var query = "";
   }
-  console.log("Tags array:", tags);
-  console.log("Tags for axios query:", tags.join(","), "| query:", query);
+  // console.log("Tags array:", tags);
+  // console.log("Tags for axios query:", tags.join(","), "| query:", query);
 
   return (
     <div>

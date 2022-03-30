@@ -172,8 +172,6 @@ const ChooseAMeal = (props) => {
   }, []);
 
   const handleNext = () => {
-    console.log("index", index);
-    console.log(meals);
     let tempIndex = index;
     if (tempIndex < meals.recipes.length - 1) {
       tempIndex = tempIndex + 1;
@@ -217,7 +215,6 @@ const ChooseAMeal = (props) => {
           withCredentials: true,
         }
       );
-      console.log(res);
       //navigate("/dashboard");
     } catch (error) {
       console.log(error);

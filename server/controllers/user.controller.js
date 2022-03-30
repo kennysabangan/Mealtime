@@ -19,7 +19,6 @@ module.exports = {
   register: (req, res) => {
     User.create(req.body)
       .then((user) => {
-        console.log(user);
         const userToken = jwt.sign(
           {
             id: user._id,
