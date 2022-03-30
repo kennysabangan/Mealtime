@@ -50,10 +50,9 @@ const RecipeGrid = () => {
             } */}
 
     return (
-        <MDBContainer className="d-flex">
+        <MDBContainer className="d-flex flex-wrap gap-2" >
             { recipes.map((item, idx) => (
-
-            <MDBCard key={idx} style={{ width: "33%" }}>
+            <MDBCard key={idx} className="m-2" style={{ width: "30%"}}>
                 <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay text-center'>
                     <MDBCardImage src={item.recipe.image} height="225" />
                     <a href='/onerecipe'>
