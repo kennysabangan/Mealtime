@@ -210,10 +210,10 @@ const Dashboard = () => {
                 <div className="card-body d-flex flex-column justify-content-center">
                   <h2 style={{ marginTop: "-5px" }}>
                     Popular Favorites{" "}
-                    <i
-                      className="fas fa-utensils ms"
-                      style={{ transform: "scale(0.70)" }}
-                    ></i>{" "}
+                      <i
+                        className="fas fa-utensils"
+                        style={{ transform: "scale(0.60) translate(-4px,4px)" }}
+                      ></i>
                   </h2>
                   <h5 className="card-title">
                     Smoked Salmon Eggs Benedict With Lemon Dill Hollandaise

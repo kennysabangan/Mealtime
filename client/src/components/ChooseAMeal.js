@@ -158,6 +158,7 @@ const ChooseAMeal = (props) => {
         return await res.data;
       };
       const apiData = await replaceImages();
+      console.log(apiData);
       return apiData;
     } catch (error) {
       console.log(error);
@@ -286,14 +287,14 @@ const ChooseAMeal = (props) => {
       <div className="m-4 text-center">
         <button
           onClick={handleAddRecipe}
-          className="btn btn-lg"
+          className="btn p-3 px-4"
           style={{
             marginTop: "2px",
             backgroundColor: "#48BD8F",
             fontWeight: "bold",
           }}
         >
-          <span>Add to My Recipes</span>
+          <span><i className="fas fa-plus me-2"></i>Add to My Recipes</span>
         </button>
       </div>
     </div>

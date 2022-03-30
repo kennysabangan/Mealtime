@@ -56,8 +56,8 @@ module.exports = {
   findRecipesByUser: (req, res) => {
     Recipe.find({ createdBy: req.jwtpayload.id })
       .then((recipesFromUser) => {
-        console.log("devlog", req.jwtpayload.id);
-        console.log(recipesFromUser);
+        // console.log("devlog", req.jwtpayload.id);
+        // console.log(recipesFromUser);
         res.json(recipesFromUser);
       })
       .catch((err) => {

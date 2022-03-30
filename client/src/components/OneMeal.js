@@ -6,80 +6,87 @@ import { useParams } from "react-router-dom";
 const OneMeal = (props) => {
   const { id } = useParams(); // id will be specific recipe id.
   const [meal, setMeal] = useState({});
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const getMeal = async () => {
-      const res = await axios.get(`http://localhost:8000/api/recipe/${id}`);
-      setMeal(res.data);
-      console.log(res.data);
-      console.log("devlog", meal);
+      await axios.get(`http://localhost:8000/api/recipe/${id}`)
+        .then(res => {
+          setMeal(res.data)
+          setLoaded(true);
+        })
     };
     getMeal();
+    console.log("devlog", meal);
   }, []);
 
-  return (
+  return ( loaded &&
     <MDBContainer style={{ marginTop: "30px" }}>
-      <MDBRow>
-        <h1 className="recipe-header">{meal && meal.recipeName}</h1>
-        <MDBCol md="8" className="col-example">
+      <MDBRow className="d-flex justify-content-center">
+        <MDBCol md="6" className="col-example">
+          <h1 className="recipe-header">{meal && meal.recipeName}</h1>
+        </MDBCol>
+        <MDBCol md="3" className="col-example">
+          {/* <button className="btn btn-dark">Delete From Recipes</button> */}
+        </MDBCol>
+      </MDBRow>
+      <MDBRow className="d-flex justify-content-center">
+        <MDBCol md="6" className="col-example">
           <img
             style={{ width: "100%" }}
             src={meal && meal.image}
             alt="Food Picture"
           />
         </MDBCol>
-        <MDBCol md="4" className="col-example">
-          <div className="recipe-times h-100 d-flex flex-column justify-content-around align-items-start">
+        <MDBCol md="3" className="col-example">
+
+          <div className="recipe-times h-100 d-flex flex-column justify-content-around align-items-center">
             <h2
               className="recipe-header"
               style={{ textDecoration: "underline" }}
             >
-              Time Break Down:
+              Meal Overview:
             </h2>
             <p>Prep Time: {meal && meal.prepTime} Minutes</p>
-            <p>Cook Time: [insert recipe cook time]</p>
-            <p>Total Time: [insert recipe total time]</p>
-            <p>Servings: [insert amount of servings]</p>
+            <p>Total Time: {meal && Math.ceil(meal.prepTime * 1.55)} Minutes</p>
+            <p>Servings: {meal && meal.servings}</p>
+            <button className="btn btn-danger"><i className="fas fa-times me-2"></i>Delete From Recipes</button>
           </div>
         </MDBCol>
       </MDBRow>
       <hr />
-      {/* <MDBRow>
-        <p className="recipe-desc" style={{ fontStyle: "italic" }}>
-          This crispy South African inspired fried chicken recipe is made with a
-          dry seasoning blend of bird’s eye chili peppers, paprika, salt, lemon
-          peels, oregano, and garlic — it’s finger licking good!
-        </p>
-      </MDBRow> */}
-      <hr />
-      <MDBRow>
+      <MDBRow className="d-flex justify-content-center">
+        <MDBCol md="9" className="col-example">
         <h2 className="recipe-header" style={{ textDecoration: "underline" }}>
           Ingredients:
         </h2>
-        {/* {meal.data &&
-          meal.data.ingredients.map((ingredient, index) => {
+        {meal &&
+          meal.ingredients.map((ingredient, index) => {
             return (
               <ul style={{ marginLeft: "20px" }}>
-                <li key={ingredient.id}>{ingredient.original}</li>
+                <li key={ingredient.index}>{ingredient.original}</li>
               </ul>
             );
-          })} */}
+          })}
+          </MDBCol>
       </MDBRow>
       <hr />
-      <MDBRow>
-        <h2 className="recipe-header" style={{ textDecoration: "underline" }}>
-          Instructions:
-        </h2>
-        {/* {meal.data &&
-          meal.data.instructions[0].steps.map((step, index) => {
-            return (
-              <ol style={{ marginLeft: "20px" }}>
-                <li key={index} className="instructions">
-                  {step.step}
-                </li>
-              </ol>
-            );
-          })} */}
+      <MDBRow className="d-flex justify-content-center">
+        <MDBCol md="9" className="col-example mb-5">
+          <h2 className="recipe-header" style={{ textDecoration: "underline" }}>
+            Instructions:
+          </h2>
+          <ol style={{ marginLeft: "20px" }}>
+            {meal &&
+              meal.instructions.map((step, index) => {
+                return (
+                    <li key={index} className="instructions">
+                      {step.step}
+                    </li>
+                );
+              })}
+            </ol>
+          </MDBCol>
       </MDBRow>
     </MDBContainer>
   );
