@@ -79,7 +79,7 @@ const LoginRegistration = () => {
         <div className="col-md-4">
           {/* Pills navs */}
           <ul className="nav nav-pills nav-justified mb-3" role="tablist">
-            <h1 className="display-5 mb-4">
+            <h1 className="display-4 mb-4">
               Take out stress from your mealtime.
             </h1>
             <li className="nav-item" role="presentation">
