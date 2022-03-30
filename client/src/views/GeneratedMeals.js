@@ -11,13 +11,13 @@ const GeneratedMeals = () => {
     var query = "";
   }
   console.log("Tags array:", tags);
-  console.log("Tags for axios query:", tags.join(","), "query:", query);
+  console.log("Tags for axios query:", tags.join(","), "| query:", query);
 
   return (
     <div>
       <Navigation />
       <div className="profile-background">
-        <ChooseAMeal tags={tags} />
+        <ChooseAMeal tags={tags} query={query} />
       </div>
     </div>
   );

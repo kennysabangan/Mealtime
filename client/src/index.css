@@ -53,7 +53,11 @@ h2 {
   font-family: 'Cookie', cursive;
 }
 
-h1.cursive {
+h3 {
+  font-family: 'Cookie', cursive;
+}
+
+h1 {
   font-family: 'Cookie', cursive;
 }
 
@@ -120,13 +124,17 @@ h1.cursive {
   background-position: center;
 }
 
+.img-edit {
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
 .featured-img {
   border: 2px solid rgb(186,118,72, 0.40);
   border-radius: 5px;
-  transform: scaleX(0.85);
 }
 
 .featured-img > img {
-  transform: scaleX(1.30);
   border-radius: 5px;
 }
+
