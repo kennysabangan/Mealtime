@@ -123,6 +123,7 @@ h1 {
   background-size: cover;
   background-position: center;
   padding-bottom: 10px;
+  min-height: 100vh;
 }
 
 .img-edit {
