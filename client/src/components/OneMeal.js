@@ -4,7 +4,7 @@ import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
 import { useParams } from "react-router-dom";
 
 const OneMeal = (props) => {
-  const { id } = props; // id will be specific recipe id.
+  const { id } = useParams(); // id will be specific recipe id.
   const [meal, setmeal] = useState({});
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const OneMeal = (props) => {
             >
               Time Break Down:
             </h2>
-            <p>Prep Time: {meal.data && meal.data.prepTime}</p>
+            <p>Prep Time: {meal.data && meal.data.prepTime} Minutes</p>
             <p>Cook Time: [insert recipe cook time]</p>
             <p>Total Time: [insert recipe total time]</p>
             <p>Servings: [insert amount of servings]</p>
