@@ -19,6 +19,7 @@ const RecipeGrid = (props) => {
         withCredentials: true,
       });
       setRecipes(res.data);
+
     };
     getRecipes();
   });
