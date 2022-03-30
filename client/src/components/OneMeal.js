@@ -16,6 +16,7 @@ const OneMeal = () => {
         .then(res => {
           setMeal(res.data)
           setLoaded(true);
+          console.log(res.data);
         })
     };
     getMeal();
