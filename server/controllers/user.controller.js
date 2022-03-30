@@ -86,11 +86,13 @@ module.exports = {
   getRecipes: (req, res) => {
     const data = req.cookies.usertoken;
     const decodedData = jwt.decode(data);
-    User.findOne({ _id: decodedData.id }).populate('recipes.recipe')
-      .then((user) => {
-        res.json(user.recipes)
-      })
-      .catch((err) => res.json(err));
+    if (decodedData) {
+      User.findOne({ _id: decodedData.id }).populate('recipes.recipe')
+        .then((user) => {
+          res.json(user.recipes)
+        })
+        .catch((err) => res.json(err));
+    }
   },
   removeRecipeFromBook: (req, res) => {
     const data = req.cookies.usertoken;

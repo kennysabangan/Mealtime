@@ -198,10 +198,10 @@ const ChooseAMeal = (props) => {
     console.log(meal);
     var instructions;
 
-    if (meal.analyzedInstructions[0].steps.length > 1) {
+    if (meal.analyzedInstructions && meal.analyzedInstructions[0].steps.length > 1) {
       instructions = meal.analyzedInstructions[0].steps;
-    } else if ( meal.analyzedInstructions[0].steps.length == 1 && instructions) {
-      instructions = meal.instructions;
+    } else if ( meal.analyzedInstructions && meal.analyzedInstructions[0].steps.length == 1 && instructions) {
+      instructions = { ...meal.instructions };
     } else {
       instructions = ''
     }

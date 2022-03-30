@@ -19,7 +19,7 @@ module.exports = {
     newRecipeObject
       .save()
       .then((newRecipe) => {
-        console.log(newRecipe);
+        // console.log(newRecipe);
         User.findOneAndUpdate({ _id: req.jwtpayload.id }, { $push: { recipes: [{ recipe: newRecipe }] }}, { new: true })
           .then(displayNew => {
             res.json(displayNew)
