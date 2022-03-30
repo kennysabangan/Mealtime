@@ -85,7 +85,26 @@ const OneMeal = () => {
       </MDBRow>
       }
 
-      { meal.instructions[0].steps &&
+      { meal && meal.instructions[0].instructions &&
+      <MDBRow className="d-flex justify-content-center">
+        <MDBCol md="9" className="col-example mb-5">
+          <h2 className="recipe-header" style={{ textDecoration: "underline" }}>
+            Instructions:
+          </h2>
+          <ol style={{ marginLeft: "20px" }}>
+            {meal &&
+              meal.instructions[0].instructions.map((step, index) => {
+                return (
+                    <li key={index} className="instructions">
+                      {step.step}
+                    </li>
+                );
+              })}
+            </ol>
+          </MDBCol>
+      </MDBRow>
+      }
+      { meal && meal.instructions[0].steps &&
       <MDBRow className="d-flex justify-content-center">
         <MDBCol md="9" className="col-example mb-5">
           <h2 className="recipe-header" style={{ textDecoration: "underline" }}>
