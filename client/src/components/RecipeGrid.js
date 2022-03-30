@@ -12,7 +12,6 @@ import {
 
 const RecipeGrid = (props) => {
   const [recipes, setRecipes] = useState([]);
-  let { updated } = props;
 
   useEffect(() => {
     const getRecipes = async () => {
