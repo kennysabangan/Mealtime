@@ -117,9 +117,8 @@ h1 {
 
 .dashboard-background {
   background-image: url('../public/dashboard.webp');
+  background-attachment: fixed;
   background-repeat: no-repeat;
-  height: 100vh;
-  width: 100vw;
   background-size: cover;
   background-position: center;
 }

@@ -90,7 +90,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard-background">
       <Navigation />
-      <div>
+      {/* <div> */}
         <div className="container">
           <div className="container-dashboard px-4 pb-2 row mt-3 py-1 pb-2">
             <div className="col-md-6">
@@ -243,7 +243,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-    </div>
+    // </div>
   );
 };
 
