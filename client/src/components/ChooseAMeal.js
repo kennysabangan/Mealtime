@@ -37,7 +37,7 @@ const ChooseAMeal = (props) => {
               "X-RapidAPI-Host":
                 "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
               "X-RapidAPI-Key":
-                "0f84236229msh09b7a39c03b9eafp13e306jsnb8eba2675d6a",
+                "9fc53f2c2fmsh8633a9448fc45adp1d4bd0jsn4d61359145cd",
             },
           };
         }
@@ -55,7 +55,7 @@ const ChooseAMeal = (props) => {
             headers: {
               "X-RapidAPI-Host": "bing-image-search1.p.rapidapi.com",
               "X-RapidAPI-Key":
-                "0f84236229msh09b7a39c03b9eafp13e306jsnb8eba2675d6a",
+                "9fc53f2c2fmsh8633a9448fc45adp1d4bd0jsn4d61359145cd",
             },
           };
           axios
@@ -103,24 +103,41 @@ const ChooseAMeal = (props) => {
     }
   };
 
-  const handleAddRecipe = () => {
-    axios
-      .post(
+  const handleAddRecipe = async () => {
+    try {
+      const res = await axios.post(
         "http://localhost:8000/api/recipe",
         {
-          recipes: meal,
+          recipeName: meal.title,
+          prepTime: meal.readyInMinutes,
+          servings: meal.servings,
+          image: meal.image,
+          ingredients: meal.extendedIngredients,
+          instructions: meal.analyzedInstructions[0].steps,
+          // ingredients: console.log(res.data.recipes[0].extendedIngredients[0].original);
+          // image console.log(res.data.recipes[0].image);
+          // servings console.log(res.data.recipes[0].servings);
+          // preptime console.log(res.data.recipes[0].readyInMinutes);
+          // title console.log(res.data.recipes[0].title);
+          // instructions console.log(res.data.recipes[0].analyzedInstructions[0].steps);
         },
         {
           withCredentials: true,
         }
-      )
-      .then((res) => {
-        console.log(res.data);
-        navigate("/dashboard");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      );
+      console.log(res);
+      //navigate("/dashboard");
+    } catch (error) {
+      console.log(error);
+    }
+
+    // .then((res) => {
+    //   console.log(res.data);
+    //   navigate("/dashboard");
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    // });
   };
 
   return meals.recipes && meals.recipes.length != 0 ? (
