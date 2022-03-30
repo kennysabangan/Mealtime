@@ -8,9 +8,7 @@ const OneMeal = (props) => {
 
   useEffect(() => {
     const getMeal = async () => {
-      const res = await axios.get(
-        "http://localhost:8000/api/recipe/6243e89f6a822541c43231ba"
-      );
+      const res = await axios.get(`http://localhost:8000/api/recipe/${id}`);
       console.log(res);
       setmeal(res);
       console.log("devlog", meal);
@@ -61,7 +59,7 @@ const OneMeal = (props) => {
           meal.data.ingredients.map((ingredient, index) => {
             return (
               <ul style={{ marginLeft: "20px" }}>
-                <li key={index}>{ingredient.original}</li>
+                <li key={ingredient.id}>{ingredient.original}</li>
               </ul>
             );
           })}
