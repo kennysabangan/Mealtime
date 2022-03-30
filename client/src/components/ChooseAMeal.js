@@ -205,7 +205,7 @@ const ChooseAMeal = (props) => {
           servings: meal.servings,
           image: meal.image,
           ingredients: meal.extendedIngredients,
-          instructions: meal.analyzedInstructions[0].steps,
+          instructions: meal.analyzedInstructions[0],
           // ingredients: console.log(res.data.recipes[0].extendedIngredients[0].original);
           // image console.log(res.data.recipes[0].image);
           // servings console.log(res.data.recipes[0].servings);
@@ -218,7 +218,7 @@ const ChooseAMeal = (props) => {
         }
       );
       console.log(res);
-      //navigate("/dashboard");
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
     }
