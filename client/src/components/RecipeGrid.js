@@ -50,10 +50,9 @@ const RecipeGrid = () => {
             } */}
 
     return (
-        <MDBContainer className="d-flex">
+        <MDBContainer className="d-flex flex-wrap gap-2" >
             { recipes.map((item, idx) => (
-
-            <MDBCard key={idx} style={{ width: "33%" }}>
+            <MDBCard key={idx} className="m-2" style={{ width: "30%"}}>
                 <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay text-center'>
                     <MDBCardImage src={item.recipe.image} height="225" />
                     <a href='/onerecipe'>
@@ -63,7 +62,7 @@ const RecipeGrid = () => {
                 <MDBCardBody>
                     <MDBCardTitle>{item.recipe.recipeName}</MDBCardTitle>
                     <MDBCardText>
-                        <span style={{ fontStyle: 'italic' }}> A South African inspired fried chicken recipe — it’s finger licking good! </span>
+                        <span>Servings: {item.recipe.servings} <i className="fas fa-utensils mx-2"></i> Time to Cook: {item.recipe.prepTime} minutes </span>
                     </MDBCardText>
                 </MDBCardBody>
             </MDBCard>
