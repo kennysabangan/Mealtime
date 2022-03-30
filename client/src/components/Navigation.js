@@ -55,9 +55,6 @@ const Navigation = (props) => {
                     <li className="nav-item px-2">
                         <a className="nav-link" href="/meals">Find Random Meal</a>
                     </li>
-                    <li className="nav-item px-2">
-                        <a className="nav-link" href="/addrecipe">Add Recipe</a>
-                    </li>
                 </ul>
 
                 {/* <!-- Right links --> */}
@@ -69,7 +66,6 @@ const Navigation = (props) => {
                         </MDBDropdownToggle>
                         <MDBDropdownMenu basic>
                             <MDBDropdownItem href="/profile">View Profile</MDBDropdownItem>
-                            <MDBDropdownItem href="/recipes">View Recipes</MDBDropdownItem>
                         </MDBDropdownMenu>
                     </MDBDropdown>
                     <button onClick={logout} type="button" className="btn btn-primary ms-3 me-2">
