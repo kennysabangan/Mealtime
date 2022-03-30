@@ -12,13 +12,14 @@ module.exports = {
   findThisUser: (req, res) => {
     const data = req.cookies.usertoken;
     const decodedData = jwt.decode(data);
-    User.findOne({ id: decodedData.id })
+    User.findOne({ _id: decodedData.id })
       .then((user) => res.json(user))
       .catch((err) => res.json(err));
   },
   register: (req, res) => {
     User.create(req.body)
       .then((user) => {
+        console.log(user);
         const userToken = jwt.sign(
           {
             id: user._id,
