@@ -8,7 +8,6 @@ import RecipeGrid from "../components/RecipeGrid";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [recipes, setRecipes] = useState([]);
   const [query, setQuery] = useState("");
   const [params, setParams] = useState({
     tags: [],
@@ -75,14 +74,8 @@ const Dashboard = () => {
         newStateObject.tags = newTags;
         setParams(newStateObject);
 
-
-        axios.get('http://localhost:8000/api/users/recipes', { withCredentials: true })
-          .then(recipes => {
-            console.log(recipes.data);
-
-          })
-    })
-    .catch(err => console.log(err))
+       })
+      .catch(err => console.log(err))
 
     // If user JUST logs in: success! TODO: ONLY TOAST WHEN FIRST LOGGED IN
     toast.success("You have successfully logged in!");
