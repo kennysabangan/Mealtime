@@ -1,9 +1,13 @@
 import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Buffer } from 'buffer';
 import { useNavigate } from 'react-router-dom';
 import { MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem } from "mdbreact";
+import noProfile from '../static/no-profile.png'
 
-const Navigation = () => {
+const Navigation = (props) => {
 
+    const [ pic, setPic ] = useState("");
     const navigate = useNavigate();
 
     const logout = () => {
@@ -11,6 +15,23 @@ const Navigation = () => {
             .then(() => navigate('/'))
             .catch(err => console.log(err))
     }
+
+    useEffect(() => {
+        axios
+            .get("http://localhost:8000/api/users/thisuser", {
+            withCredentials: true,
+            })
+            .then((userData) => {
+
+                axios.post('http://localhost:8000/api/users/pic', { user: userData.data }, { responseType: "arraybuffer" })
+                .then(res => {
+                    let base64ImageString = Buffer.from(res.data, 'binary').toString('base64')
+                    let srcValue = "data:image/png;base64,"+base64ImageString
+                    setPic(srcValue)
+                })
+                .catch(err => console.log(err))
+            })
+    }, [])
 
     return (
         // <!-- Navbar -->
@@ -42,8 +63,8 @@ const Navigation = () => {
                 {/* <!-- Right links --> */}
                 <div className="d-flex align-items-center">
                     <MDBDropdown>
-                        <MDBDropdownToggle caret color="light">
-                            <img src={require('../static/no-profile.png')} className="me-2" height="20px"/>
+                        <MDBDropdownToggle caret color="light" className="px-3" style={{ padding: "5px", height: "36px"}}>
+                            <img src={ pic ? pic : noProfile } className="me-2" height="25px" style={{ borderRadius: "50%" }}/>
                             My Profile
                         </MDBDropdownToggle>
                         <MDBDropdownMenu basic>
