@@ -205,13 +205,7 @@ const ChooseAMeal = (props) => {
           servings: meal.servings,
           image: meal.image,
           ingredients: meal.extendedIngredients,
-          instructions: meal.analyzedInstructions[0],
-          // ingredients: console.log(res.data.recipes[0].extendedIngredients[0].original);
-          // image console.log(res.data.recipes[0].image);
-          // servings console.log(res.data.recipes[0].servings);
-          // preptime console.log(res.data.recipes[0].readyInMinutes);
-          // title console.log(res.data.recipes[0].title);
-          // instructions console.log(res.data.recipes[0].analyzedInstructions[0].steps);
+          instructions: `${ meal.analyzedInstructions ? meal.analyzedInstructions[0] : '' }`,
         },
         {
           withCredentials: true,
