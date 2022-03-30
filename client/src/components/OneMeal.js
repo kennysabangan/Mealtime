@@ -40,9 +40,9 @@ const OneMeal = () => {
         </MDBCol>
       </MDBRow>
       <MDBRow className="d-flex justify-content-center">
-        <MDBCol md="6" className="col-example">
+        <MDBCol md="6" className="col-example justify-content-center d-flex">
           <img
-            style={{ width: "100%" }}
+            style={{ maxHeight: "50vh"}}
             src={meal && meal.image}
             alt="Food Picture"
           />
