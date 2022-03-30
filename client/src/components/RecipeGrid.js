@@ -62,7 +62,7 @@ const RecipeGrid = () => {
                 <MDBCardBody>
                     <MDBCardTitle>{item.recipe.recipeName}</MDBCardTitle>
                     <MDBCardText>
-                        <span style={{ fontStyle: 'italic' }}> A South African inspired fried chicken recipe — it’s finger licking good! </span>
+                        <span>Servings: {item.recipe.servings} <i className="fas fa-utensils mx-2"></i> Time to Cook: {item.recipe.prepTime} minutes </span>
                     </MDBCardText>
                 </MDBCardBody>
             </MDBCard>
