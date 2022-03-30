@@ -39,7 +39,6 @@ const LoginRegistration = () => {
       )
       .then(() => {
         navigate("/dashboard");
-        console.log("success");
       })
       .catch(() => {
         setErrors({
@@ -66,7 +65,7 @@ const LoginRegistration = () => {
         },
         { withCredentials: true }
       )
-      .then(() => { navigate("/dashboard"); toast.success("You have successfully logged in!");})
+      .then(() => { navigate("/dashboard"); })
       .catch((err) => setErrors(err.response.data.errors));
   };
 

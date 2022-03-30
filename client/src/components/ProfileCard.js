@@ -18,6 +18,7 @@ const ProfileCard = (props) => {
     const [ age, setAge ] = useState(user.age);
     const [ allergies, setAllergies ] = useState(user.allergies);
     const [ restrictions, setRestrictions ] = useState(user.restrictions);
+    const [ update, setUpdate ] = useState(false)
 
     const uploadPic = (e) => {
         e.preventDefault();
@@ -71,13 +72,15 @@ const ProfileCard = (props) => {
 
         newStateObject.tags = newTags;
         setParams(newStateObject);
+        console.log(newStateObject);
     };
 
     const saveHandler = () => {
         axios.put('http://localhost:8000/api/users/update',
-            { id: user._id , firstName, lastName, email, age, allergies, quote, restrictions, restrictions },
+            { id: user._id , firstName, lastName, quote, email, age, allergies, restrictions: params['tags'] },
             { withCredentials: true })
                 .then(user => {
+                    console.log(user);
                     setFirstName(user.data.firstName);
                     setLastName(user.data.lastName);
                     setQuote(user.data.quote)
@@ -85,6 +88,7 @@ const ProfileCard = (props) => {
                     setAge(user.data.age);
                     setAllergies(user.data.allergies);
                     setRestrictions(user.data.restrictions);
+
                     setEdit(!edit);
                     setUpdate({ ...update });
                 })

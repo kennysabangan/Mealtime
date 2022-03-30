@@ -107,7 +107,7 @@ const Dashboard = () => {
           })
 
     // If user JUST logs in: Success!
-    // toast.success("You have successfully logged in!");
+    toast.success("You have successfully logged in!");
   }, []);
 
   const handleAddRecipe = async () => {

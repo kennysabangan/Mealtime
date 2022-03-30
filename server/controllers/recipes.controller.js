@@ -5,7 +5,7 @@ module.exports = {
   getAllRecipes: (req, res) => {
     Recipe.find({})
       .then((allRecipes) => {
-        console.log(allRecipes);
+        // console.log(allRecipes);
         res.json(allRecipes);
       })
       .catch((err) => {
@@ -23,7 +23,7 @@ module.exports = {
         User.findOneAndUpdate({ _id: req.jwtpayload.id }, { $push: { recipes: [{ recipe: newRecipe }] }}, { new: true })
           .then(displayNew => {
             res.json(displayNew)
-            console.log(displayNew);
+            // console.log(displayNew);
           })
       })
       .catch((err) => {
@@ -34,7 +34,7 @@ module.exports = {
   getOneRecipe: (req, res) => {
     Recipe.findOne({ _id: req.params.id })
       .then((oneRecipe) => {
-        console.log(oneRecipe);
+        // console.log(oneRecipe);
         res.json(oneRecipe);
       })
       .catch((err) => {
@@ -45,7 +45,7 @@ module.exports = {
   deleteRecipe: (req, res) => {
     Recipe.deleteOne({ _id: req.params.id })
       .then((deleteRecipe) => {
-        console.log(deleteRecipe);
+        // console.log(deleteRecipe);
         res.json(deleteRecipe);
       })
       .catch((err) => {
