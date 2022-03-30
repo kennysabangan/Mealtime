@@ -4,8 +4,8 @@ const bcrypt = require("bcrypt");
 const recipeSchema = new mongoose.Schema({
   recipe: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Recipe',
-  }
+    ref: "Recipe",
+  },
 });
 
 const UserSchema = new mongoose.Schema(
@@ -55,7 +55,7 @@ const UserSchema = new mongoose.Schema(
     pic: {
       type: String,
     },
-    recipes: [recipeSchema]
+    recipes: [recipeSchema],
   },
   { timestamps: true }
 );
