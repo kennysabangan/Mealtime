@@ -76,4 +76,11 @@ module.exports = {
       .then((updatedUser) => res.json(updatedUser))
       .catch((err) => res.status(400).json(err));
   },
+  uploadImage: (req, res) => {
+    User.findOneAndUpdate({ _id: req.body.creator }, {
+      pic: req.file.filename
+    }, { new: true })
+    .then((updatedUser) => res.json(updatedUser))
+    .catch((err) => res.status(400).json(err));
+  }
 };

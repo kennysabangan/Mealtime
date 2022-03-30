@@ -1,12 +1,16 @@
 import axios from 'axios';
+import { Buffer } from 'buffer';
 import { useEffect, useState } from 'react';
+import FormData from 'form-data';
+import noProfile from '../static/no-profile.png'
+import toast from 'react-hot-toast';
 
 const ProfileCard = (props) => {
 
     const [ edit, setEdit ] = useState(false);
     const { user } = props;
-    const [image, setImage] = useState("");
-    const [url, setUrl] = useState("");
+    const [ image, setImage ] = useState("");
+    const [ pic, setPic ] = useState();
     const [ firstName, setFirstName ] = useState(user.firstName);
     const [ lastName, setLastName ] = useState(user.lastName);
     const [ quote, setQuote ] = useState(user.quote);
@@ -15,34 +19,33 @@ const ProfileCard = (props) => {
     const [ allergies, setAllergies ] = useState(user.allergies);
     const [ restrictions, setRestrictions ] = useState(user.restrictions);
 
-    useEffect(()=> {
-        if(url){
-            saveHandler()
-        }
-    },[url])
+    const uploadPic = (e) => {
+        e.preventDefault();
+        if (e.target[0].value) {
+            const data = new FormData();
+            data.append("image", image);
+            data.append("creator", image.creator)
 
-    const uploadPic = () => {
-        const data = new FormData()
-        data.append("file",image)
-        fetch("http://localhost:8000/api/users/update",{
-            method:"put",
-            body: data
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            setUrl(data.url)
-        })
-        .catch(err=>{
-            console.log(err)
-        })
+            fetch("http://localhost:8000/api/users/upload", {
+              method: "POST",
+              body: data
+            })
+              .then(() => {
+                window.location.reload(false);
+                toast.success("Profile picture uploaded successfully!");
+              })
+              .catch((err) => {
+                console.log(err.message);
+              });
+        } else {
+            toast.error("Choose a file you wish to upload!")
+        }
     }
 
-    const postPic = () => {
-        if(image) {
-            uploadPic()
-        } else {
-            saveHandler()
-        }
+    const uploadHandler = (e) => {
+        const obj = e.target.files[0]
+        obj.creator = user._id
+        setImage(obj)
     }
 
     const [params, setParams] = useState({
@@ -71,11 +74,8 @@ const ProfileCard = (props) => {
     };
 
     const saveHandler = () => {
-        uploadPic();
-        postPic();
-        onChangeHandler();
         axios.put('http://localhost:8000/api/users/update',
-            { id: user._id , firstName, lastName, email, age, allergies, quote, restrictions, restrictions, pic: params.tags },
+            { id: user._id , firstName, lastName, email, age, allergies, quote, restrictions, restrictions },
             { withCredentials: true })
                 .then(user => {
                     setFirstName(user.data.firstName);
@@ -85,15 +85,26 @@ const ProfileCard = (props) => {
                     setAge(user.data.age);
                     setAllergies(user.data.allergies);
                     setRestrictions(user.data.restrictions);
-                    setImage(user.data.pic);
                     setEdit(!edit);
+                    setUpdate({ ...update });
                 })
                 .catch(err => console.log(err))
     }
 
+    useEffect(() => {
+        axios.post('http://localhost:8000/api/users/pic', { user: user }, { responseType: "arraybuffer" })
+            .then(res => {
+                let base64ImageString = Buffer.from(res.data, 'binary').toString('base64')
+                let srcValue = "data:image/png;base64,"+base64ImageString
+                setPic(srcValue)
+            })
+            .catch(err => console.log(err))
+    }, [])
+
     const cancelHandler = () => {
         window.location.reload(false);
     }
+    console.log(user);
 
     return (
         <section className="vh-100" style={{ backgroundColor: "#f4f5f7" }}>
@@ -105,30 +116,22 @@ const ProfileCard = (props) => {
                     <div className="card mb-3" style={{ borderRadius: ".5rem" }}>
                     <div className="row g-0">
                         <div className="col-md-4 gradient-custom text-center text-white" style={{ borderTopLeftRadius: ".5rem", borderBottomLeftRadius: ".5rem" }}>
-                        
-                        { edit ? 
+
+                        { edit ?
                             <div className='img-edit'>
-                                <img
-                                src={require('../static/no-profile.png')}
-                                alt="Avatar"
-                                className="img-fluid my-5"
-                                style={{ width: "80px" }}
-                                />
-                                <input type="file" onChange={(e)=>setImage(e.target.files[0])} />
-                                {/* <button className="btn waves-effect waves-light blue darken-1" onClick={()=>postPic()}>Add Profile Pic</button> */}
-                            </div>:
-                            <>
-                            <img src={ user.pic } />
-                            </>
+                                <form onSubmit={uploadPic} className="mt-2">
+                                    <input type="file" onChange={uploadHandler} className="ms-4 mt-5" />
+                                    <button className="btn btn-primary my-3 mb-4" type="submit">Upload Picture</button>
+                                </form>
+                            </div> :
+                            <div className="mt-3">
+                                <img src={ pic ? pic : noProfile } style={{ borderRadius: "50%" }} height="100px" className="my-4" />
+                            </div>
                         }
 
-                        { !edit &&
-                            <img src={ user.pic } />
-                        }
-                        
                         { edit ?
                         <div>
-                            <div className="d-flex justify-content-center gap-3 px-4 mb-1">
+                            <div className="d-flex justify-content-center gap-3 px-4 mb-1 mt-1">
                                 <input type="text" className="form-control text-center" value={firstName} onChange={e => setFirstName(e.target.value)}/>
                                 <input type="text" className="form-control text-center" value={lastName} onChange={e => setLastName(e.target.value)}/>
                             </div>
@@ -137,7 +140,7 @@ const ProfileCard = (props) => {
                             </div>
                         </div> :
                         <>
-                            <h5>{ firstName } { lastName }</h5>
+                            <h5 className="mt-1">{ firstName } { lastName }</h5>
                             <p>"{ quote }"</p>
                         </>
                         }
