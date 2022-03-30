@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImage, MDBRipple, MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 
 const RecipeGrid = () => {
+    const [recipes, setRecipes] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/users/recipes', { withCredentials: true })
+        .then(recipes => {
+          console.log(recipes.data);
+        })
+    }, [])
+
     // const Display = (props) => {
     //     const {id} = props;
     //     const [petList, setPetList] = useState([]); -----but for recipe list   -------
-    
-    
+
+
     //     useEffect(() => {
     //         axios.get('http://localhost:8000/api/pets') ------ our API of choice --------
     //             .then(res=> {
@@ -33,7 +43,7 @@ const RecipeGrid = () => {
                                     <td style={{borderRight:"1px solid black"}}>{pet.petType}</td>
                                     <td style={{display:"flex"}}>
                                         <Link to={`/pets/${pet._id}`} style={{borderRight:"1px solid black", paddingRight:"10px"}}>details</Link>
-                                        <Link to={`/pets/${pet._id}/edit`} style={{marginLeft:"5px"}}>edit</Link> 
+                                        <Link to={`/pets/${pet._id}/edit`} style={{marginLeft:"5px"}}>edit</Link>
                                     </td>
                                 </tr>
                             ))

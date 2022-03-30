@@ -22,13 +22,15 @@ const Navigation = (props) => {
             withCredentials: true,
             })
             .then((userData) => {
-
-                axios.post('http://localhost:8000/api/users/pic', { user: userData.data }, { responseType: "arraybuffer" })
-                .then(res => {
-                    let base64ImageString = Buffer.from(res.data, 'binary').toString('base64')
-                    let srcValue = "data:image/png;base64,"+base64ImageString
-                    setPic(srcValue)
-                })
+                console.log(userData);
+                    if (userData.data.pic) {
+                        axios.post('http://localhost:8000/api/users/pic', { user: userData.data }, { responseType: "arraybuffer" })
+                        .then(res => {
+                            let base64ImageString = Buffer.from(res.data, 'binary').toString('base64')
+                            let srcValue = "data:image/png;base64,"+base64ImageString
+                            setPic(srcValue)
+                        })
+                    }
             })
     }, [])
 
