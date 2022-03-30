@@ -3,13 +3,14 @@ import axios from "axios";
 import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
 import { useParams } from "react-router-dom";
 
-const OneMeal = (props) => {
+const OneMeal = () => {
   const { id } = useParams(); // id will be specific recipe id.
   const [meal, setMeal] = useState({});
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const getMeal = async () => {
+
       await axios.get(`http://localhost:8000/api/recipe/${id}`)
         .then(res => {
           setMeal(res.data)
@@ -19,6 +20,11 @@ const OneMeal = (props) => {
     getMeal();
     console.log("devlog", meal);
   }, []);
+
+  const handleDeleteRecipe = () => {
+    axios.get(`http://localhost:8000/api/users/recipes/${id}`)
+      .then(res => console.log(res))
+  }
 
   return ( loaded &&
     <MDBContainer style={{ marginTop: "30px" }}>
@@ -50,7 +56,10 @@ const OneMeal = (props) => {
             <p>Prep Time: {meal && meal.prepTime} Minutes</p>
             <p>Total Time: {meal && Math.ceil(meal.prepTime * 1.55)} Minutes</p>
             <p>Servings: {meal && meal.servings}</p>
-            <button className="btn btn-danger"><i className="fas fa-times me-2"></i>Delete From Recipes</button>
+            <button className="btn btn-danger" onClick={handleDeleteRecipe}>
+              <i className="fas fa-times me-2"></i>
+              Delete From Recipes
+            </button>
           </div>
         </MDBCol>
       </MDBRow>
@@ -63,8 +72,8 @@ const OneMeal = (props) => {
         {meal &&
           meal.ingredients.map((ingredient, index) => {
             return (
-              <ul style={{ marginLeft: "20px" }}>
-                <li key={ingredient.index}>{ingredient.original}</li>
+              <ul key={index} style={{ marginLeft: "20px" }}>
+                <li> {ingredient.original}</li>
               </ul>
             );
           })}

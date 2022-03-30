@@ -8,13 +8,11 @@ import {
   MDBCardImage,
   MDBRipple,
   MDBContainer,
-  MDBRow,
-  MDBCol,
 } from "mdb-react-ui-kit";
 
-const RecipeGrid = () => {
+const RecipeGrid = (props) => {
   const [recipes, setRecipes] = useState([]);
-  const [loaded, setLoaded] = useState(true);
+  let { updated } = props;
 
   useEffect(() => {
     const getRecipes = async () => {
@@ -24,8 +22,7 @@ const RecipeGrid = () => {
       setRecipes(res.data);
     };
     getRecipes();
-    console.log(recipes);
-  }, []);
+  });
 
   // const Display = (props) => {
   //     const {id} = props;

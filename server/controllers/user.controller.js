@@ -88,9 +88,18 @@ module.exports = {
     const decodedData = jwt.decode(data);
     User.findOne({ _id: decodedData.id }).populate('recipes.recipe')
       .then((user) => {
-        console.log(user.recipes);
         res.json(user.recipes)
       })
       .catch((err) => res.json(err));
+  },
+  removeRecipeFromBook: (req, res) => {
+    const data = req.cookies.usertoken;
+    const decodedData = jwt.decode(data);
+    User.findOne({ _id: decodedData.id })
+    .then((user) => {
+      console.log(user);
+      res.json(user)
+    })
+    .catch((err) => res.json(err));
   }
 };
