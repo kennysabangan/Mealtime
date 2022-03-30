@@ -5,13 +5,13 @@ import { useParams } from "react-router-dom";
 
 const OneMeal = (props) => {
   const { id } = useParams(); // id will be specific recipe id.
-  const [meal, setmeal] = useState({});
+  const [meal, setMeal] = useState({});
 
   useEffect(() => {
     const getMeal = async () => {
       const res = await axios.get(`http://localhost:8000/api/recipe/${id}`);
-      console.log(res);
-      setmeal(res);
+      setMeal(res.data);
+      console.log(res.data);
       console.log("devlog", meal);
     };
     getMeal();
@@ -20,11 +20,11 @@ const OneMeal = (props) => {
   return (
     <MDBContainer style={{ marginTop: "30px" }}>
       <MDBRow>
-        <h1 className="recipe-header">{meal.data && meal.data.recipeName}</h1>
+        <h1 className="recipe-header">{meal && meal.recipeName}</h1>
         <MDBCol md="8" className="col-example">
           <img
             style={{ width: "100%" }}
-            src={meal.data && meal.data.image}
+            src={meal && meal.image}
             alt="Food Picture"
           />
         </MDBCol>
@@ -36,7 +36,7 @@ const OneMeal = (props) => {
             >
               Time Break Down:
             </h2>
-            <p>Prep Time: {meal.data && meal.data.prepTime} Minutes</p>
+            <p>Prep Time: {meal && meal.prepTime} Minutes</p>
             <p>Cook Time: [insert recipe cook time]</p>
             <p>Total Time: [insert recipe total time]</p>
             <p>Servings: [insert amount of servings]</p>

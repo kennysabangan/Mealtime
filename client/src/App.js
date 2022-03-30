@@ -8,6 +8,7 @@ import GeneratedMeals from "./views/GeneratedMeals";
 import Profile from "./views/Profile";
 import OneRecipe from "./views/OneRecipe";
 import AddRecipe from "./views/AddRecipe";
+import OneMealTemplate from './components/OneMealTemplate'
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
         <Route path="/" element={<LoginRegistration />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/meals" element={<GeneratedMeals />} />
-        <Route path="/onerecipe/" element={<OneRecipe />} />
+        <Route path="/onerecipe" element={<OneMealTemplate />} />
         <Route path="/onerecipe/:id" element={<OneRecipe />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/addrecipe" element={<AddRecipe />} />
