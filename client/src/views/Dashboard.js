@@ -124,7 +124,7 @@ const Dashboard = () => {
         }, { withCredentials: true }
       );
       console.log(res);
-      setUpdated(!updated)
+      window.location.reload(false);
     } catch (error) {
       console.log(error);
     }

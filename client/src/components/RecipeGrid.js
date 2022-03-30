@@ -19,10 +19,9 @@ const RecipeGrid = (props) => {
         withCredentials: true,
       });
       setRecipes(res.data);
-
     };
     getRecipes();
-  });
+  }, []);
 
   // const Display = (props) => {
   //     const {id} = props;
