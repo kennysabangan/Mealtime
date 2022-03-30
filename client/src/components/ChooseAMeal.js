@@ -172,8 +172,6 @@ const ChooseAMeal = (props) => {
   }, []);
 
   const handleNext = () => {
-    console.log("index", index);
-    console.log(meals);
     let tempIndex = index;
     if (tempIndex < meals.recipes.length - 1) {
       tempIndex = tempIndex + 1;
@@ -196,6 +194,7 @@ const ChooseAMeal = (props) => {
   };
 
   const handleAddRecipe = async () => {
+    console.log(meal);
     try {
       const res = await axios.post(
         "http://localhost:8000/api/recipe",

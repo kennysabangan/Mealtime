@@ -12,7 +12,7 @@ module.exports = {
   findThisUser: (req, res) => {
     const data = req.cookies.usertoken;
     const decodedData = jwt.decode(data);
-    User.findOne({ id: decodedData.id })
+    User.findOne({ _id: decodedData.id })
       .then((user) => res.json(user))
       .catch((err) => res.json(err));
   },
