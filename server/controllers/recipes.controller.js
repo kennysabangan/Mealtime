@@ -1,8 +1,8 @@
 const Recipe = require("../models/recipe.model");
-const jwt = require("jsonwebtoken");
+const User = require("../models/user.model");
 
 module.exports = {
-  getALlRecipes: (req, res) => {
+  getAllRecipes: (req, res) => {
     Recipe.find()
       .then((allRecipes) => {
         console.log(allRecipes);
@@ -19,8 +19,11 @@ module.exports = {
     newRecipeObject
       .save()
       .then((newRecipe) => {
-        console.log(newRecipe);
-        res.json(newRecipe);
+        User.findOneAndUpdate({ _id: req.jwtpayload.id }, { $push: { recipes: newRecipe } }, { new: true })
+          .then(displayNew => {
+            res.json(displayNew)
+            console.log(displayNew);
+          })
       })
       .catch((err) => {
         console.log("create recipe failed");
