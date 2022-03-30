@@ -196,6 +196,16 @@ const ChooseAMeal = (props) => {
 
   const handleAddRecipe = async () => {
     console.log(meal);
+    var instructions;
+
+    if (meal.analyzedInstructions[0].steps.length > 1) {
+      instructions = meal.analyzedInstructions[0].steps;
+    } else if ( meal.analyzedInstructions[0].steps.length == 1 && instructions) {
+      instructions = meal.instructions;
+    } else {
+      instructions = ''
+    }
+
     try {
       const res = await axios.post(
         "http://localhost:8000/api/recipe",
@@ -205,7 +215,7 @@ const ChooseAMeal = (props) => {
           servings: meal.servings,
           image: meal.image,
           ingredients: meal.extendedIngredients,
-          instructions: `${ meal.analyzedInstructions ? meal.analyzedInstructions[0] : '' }`,
+          instructions: { instructions },
         },
         {
           withCredentials: true,
