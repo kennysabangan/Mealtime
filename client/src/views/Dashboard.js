@@ -131,7 +131,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="dashboard-background">
+    <div className="dashboard-background" style={{ height: "100vh" }}>
       <Navigation updated={updated}/>
         <div className="container">
           <div className="container-dashboard px-4 pb-2 row mt-3 py-1 pb-2">
