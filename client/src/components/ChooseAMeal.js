@@ -194,6 +194,7 @@ const ChooseAMeal = (props) => {
   };
 
   const handleAddRecipe = async () => {
+    console.log(meal);
     try {
       const res = await axios.post(
         "http://localhost:8000/api/recipe",

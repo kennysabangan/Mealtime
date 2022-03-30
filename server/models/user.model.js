@@ -1,6 +1,13 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
+const recipeSchema = new mongoose.Schema({
+  product: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Recipe',
+  },
+});
+
 const UserSchema = new mongoose.Schema(
   {
     firstName: {
@@ -48,6 +55,7 @@ const UserSchema = new mongoose.Schema(
     pic: {
       type: String,
     },
+    recipes: [recipeSchema]
   },
   { timestamps: true }
 );
