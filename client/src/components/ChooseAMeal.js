@@ -208,7 +208,7 @@ const ChooseAMeal = (props) => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/recipe",
+        `${process.env.REACT_APP_SERVER}/api/recipe`,
         {
           recipeName: meal.title,
           prepTime: meal.readyInMinutes,

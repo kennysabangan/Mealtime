@@ -17,7 +17,7 @@ const Profile = () => {
 
     // Grab user data from database
     axios
-      .get("http://localhost:8000/api/users/thisuser", {
+      .get(`${process.env.REACT_APP_SERVER}/api/users/thisuser`, {
         withCredentials: true,
       })
       .then((userData) => {

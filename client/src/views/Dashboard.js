@@ -57,7 +57,7 @@ const Dashboard = () => {
 
     // Retrieve data about the user logged in
     axios
-      .get("http://localhost:8000/api/users/thisuser", {
+      .get(`${process.env.REACT_APP_SERVER}/api/users/thisuser`, {
         withCredentials: true,
       })
       .then((userData) => {
@@ -113,7 +113,7 @@ const Dashboard = () => {
   const handleAddRecipe = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/recipe",
+        `${process.env.REACT_APP_SERVER}/api/recipe`,
         {
           recipeName: featured.title,
           prepTime: featured.readyInMinutes,

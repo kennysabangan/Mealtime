@@ -12,20 +12,20 @@ const Navigation = () => {
     const navigate = useNavigate();
 
     const logout = () => {
-        axios.get('http://localhost:8000/api/users/logout', { withCredentials: true })
+        axios.get(`${process.env.REACT_APP_SERVER}/api/users/logout`, { withCredentials: true })
             .then(() => navigate('/'))
             // .catch(err => console.log(err))
     }
 
     useEffect(() => {
         axios
-            .get("http://localhost:8000/api/users/thisuser", {
+            .get(`${process.env.REACT_APP_SERVER}/api/users/thisuser`, {
             withCredentials: true,
             })
             .then((userData) => {
                 console.log(userData);
                     if (userData.data.pic) {
-                        axios.post('http://localhost:8000/api/users/pic', { user: userData.data }, { responseType: "arraybuffer" })
+                        axios.post(`${process.env.REACT_APP_SERVER}/api/users/pic`, { user: userData.data }, { responseType: "arraybuffer" })
                         .then(res => {
                             let base64ImageString = Buffer.from(res.data, 'binary').toString('base64')
                             let srcValue = "data:image/png;base64,"+base64ImageString
@@ -63,7 +63,7 @@ const Navigation = () => {
                 <div className="d-flex align-items-center">
                     <MDBDropdown>
                         <MDBDropdownToggle caret color="light" className="px-3" style={{ padding: "5px", height: "36px"}}>
-                            <img src={ pic ? pic : noProfile } className="me-2" height="25px" style={{ borderRadius: "50%" }}/>
+                            <img src={ pic ? pic : noProfile } className="me-2" height="25px" style={{ borderRadius: "50%", width: "25px", height: "25px", objectFit: "cover", objectPosition: "0% 15%" }}/>
                             My Profile
                         </MDBDropdownToggle>
                         <MDBDropdownMenu basic>

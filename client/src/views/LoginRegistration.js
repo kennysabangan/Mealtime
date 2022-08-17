@@ -30,7 +30,7 @@ const LoginRegistration = () => {
 
     axios
       .post(
-        "http://localhost:8000/api/users/login",
+        `${process.env.REACT_APP_SERVER}/api/users/login`,
         {
           email: loginEmail,
           password: loginPassword,
@@ -55,7 +55,7 @@ const LoginRegistration = () => {
 
     axios
       .post(
-        "http://localhost:8000/api/users/register",
+        `${process.env.REACT_APP_SERVER}/api/users/register`,
         {
           firstName,
           lastName,

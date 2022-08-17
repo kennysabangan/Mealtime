@@ -27,7 +27,7 @@ const ProfileCard = (props) => {
             data.append("image", image);
             data.append("creator", image.creator)
 
-            fetch("http://localhost:8000/api/users/upload", {
+            fetch(`${process.env.REACT_APP_SERVER}/api/users/upload`, {
               method: "POST",
               body: data
             })
@@ -76,7 +76,7 @@ const ProfileCard = (props) => {
     };
 
     const saveHandler = () => {
-        axios.put('http://localhost:8000/api/users/update',
+        axios.put(`${process.env.REACT_APP_SERVER}/api/users/update`,
             { id: user._id , firstName, lastName, quote, email, age, allergies, restrictions: params['tags'] },
             { withCredentials: true })
                 .then(user => {
@@ -96,7 +96,7 @@ const ProfileCard = (props) => {
     }
 
     useEffect(() => {
-        axios.post('http://localhost:8000/api/users/pic', { user: user }, { responseType: "arraybuffer" })
+        axios.post(`${process.env.REACT_APP_SERVER}/api/users/pic`, { user: user }, { responseType: "arraybuffer" })
             .then(res => {
                 let base64ImageString = Buffer.from(res.data, 'binary').toString('base64')
                 let srcValue = "data:image/png;base64,"+base64ImageString
@@ -128,7 +128,7 @@ const ProfileCard = (props) => {
                                 </form>
                             </div> :
                             <div className="mt-3">
-                                <img src={ pic ? pic : noProfile } style={{ borderRadius: "50%" }} height="100px" className="my-4" />
+                                <img src={ pic ? pic : noProfile } style={{ borderRadius: "50%", height:"100px", width: "100px", objectFit: "cover", objectPosition: "0% 15%" }}  className="my-4" />
                             </div>
                         }
 

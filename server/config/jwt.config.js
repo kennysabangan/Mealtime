@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const secret = "codingdojo";
+const secret = process.env.SECRET_KEY
 
 module.exports.secret = secret;
 

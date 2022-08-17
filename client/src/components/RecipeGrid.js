@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+
 import {
   MDBCard,
   MDBCardBody,
@@ -12,13 +13,15 @@ import {
 
 const RecipeGrid = (props) => {
   const [recipes, setRecipes] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const getRecipes = async () => {
-      const res = await axios.get("http://localhost:8000/api/users/recipes", {
+      const res = await axios.get(`${process.env.REACT_APP_SERVER}/api/users/recipes`, {
         withCredentials: true,
       });
       setRecipes(res.data);
+      setLoaded(true);
     };
     getRecipes();
   }, []);
@@ -26,7 +29,7 @@ const RecipeGrid = (props) => {
 
   return (
     <MDBContainer className="d-flex flex-wrap gap-2">
-      {recipes.map((item, idx) => (
+      {loaded && recipes.map((item, idx) => (
         <MDBCard key={idx} className="m-2" style={{ width: "30%" }}>
           <MDBRipple
             rippleColor="light"

@@ -12,7 +12,7 @@ const OneMeal = () => {
   useEffect(() => {
     const getMeal = async () => {
 
-      await axios.get(`http://localhost:8000/api/recipe/${id}`)
+      await axios.get(`${process.env.REACT_APP_SERVER}/api/recipe/${id}`)
         .then(res => {
           setMeal(res.data)
           setLoaded(true);
@@ -24,7 +24,7 @@ const OneMeal = () => {
   }, []);
 
   const handleDeleteRecipe = () => {
-    axios.delete(`http://localhost:8000/api/users/recipes/${id}`, { withCredentials: true })
+    axios.delete(`${process.env.REACT_APP_SERVER}/api/users/recipes/${id}`, { withCredentials: true })
       .then(() => navigate('/dashboard'))
       .catch(err => console.log(err));
   }
