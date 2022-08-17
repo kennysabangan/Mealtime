@@ -59,7 +59,7 @@ module.exports = {
 
     res
       .cookie("usertoken", userToken, secret, {
-        httpOnly: true, sameSite: "none", domain: "https://mealtime.vercel.app"
+        httpOnly: true, sameSite: "none", path: "/"
       })
       .json({ msg: "success!", user: user });
   },
