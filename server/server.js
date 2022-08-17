@@ -8,7 +8,7 @@ require("dotenv").config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors({ credentials: true, origin: "https://mealtime.vercel.app/" }));
+app.use(cors({ credentials: true, origin: "https://mealtime.vercel.app" }));
 
 
 require("./config/mongoose.config");
