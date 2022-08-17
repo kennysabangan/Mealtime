@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors({ credentials: true, origin: "https://mealtime.vercel.app" }));
-
+app.set("trust proxy", 1)
 
 require("./config/mongoose.config");
 require("./routes/user.routes")(app);
