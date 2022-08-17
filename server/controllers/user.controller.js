@@ -59,7 +59,7 @@ module.exports = {
 
     res
       .cookie("usertoken", userToken, secret, {
-        httpOnly: true, sameSite: "none", path: "/"
+        httpOnly: true, sameSite: "none", secure: true
       })
       .json({ msg: "success!", user: user });
   },
