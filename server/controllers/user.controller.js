@@ -28,7 +28,7 @@ module.exports = {
 
         res
           .cookie("usertoken", userToken, secret, {
-            httpOnly: true, sameSite: "none"
+            httpOnly: true
           })
           .json({ msg: "success!", user: user });
       })
@@ -59,7 +59,7 @@ module.exports = {
 
     res
       .cookie("usertoken", userToken, secret, {
-        httpOnly: true, sameSite: "none", secure: true
+        httpOnly: true,
       })
       .json({ msg: "success!", user: user });
   },
